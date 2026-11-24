@@ -361,7 +361,7 @@ nav::-webkit-scrollbar{display:none;}
 <nav>
   <button class="htab active" onclick="showHub('checklist',this)">☑️ Checklist</button>
   <button class="htab" onclick="showHub('estudo',this)">⏱ Estudo</button>
-  <button class="htab" onclick="showHub('cal',this)">💪 Calistenia</button>
+  <button class="htab" onclick="showHub('cal',this)">💪 Academia</button>
 </nav>
 
 <!-- ══════════════════ CHECKLIST ══════════════════ -->
@@ -399,7 +399,7 @@ nav::-webkit-scrollbar{display:none;}
     <button class="blue-btn" id="wbtn" onclick="addWater()">+500ml</button>
   </div>
 
-  <div class="sec-lbl">Calistenia</div>
+  <div class="sec-lbl">Academia</div>
   <div class="cal-count-card">
     <div class="cal-count-top">
       <div class="cal-big" id="cal-total">0</div>
@@ -472,43 +472,40 @@ nav::-webkit-scrollbar{display:none;}
   <div id="cs-visao" class="c_section active">
     <div class="c_hero">
       <div class="c_hero-meta">
-        <span class="c_badge ac">HIPERTROFIA</span>
-        <span class="c_badge">12 OUT → 10 JAN</span>
-        <span class="c_badge">+ FÔLEGO</span>
+        <span class="c_badge ac">FOCO BRAÇOS</span>
+        <span class="c_badge">25 NOV → 1 JAN</span>
+        <span class="c_badge">ACADEMIA</span>
       </div>
-      <h1>Massa &amp;<br>Fôlego</h1>
-      <p style="color:var(--fg2);margin-top:8px;font-size:14px;">4 treinos de força com progressão por níveis + 2 sessões de fôlego. Quinta é futebol.</p>
+      <h1>Braço<br>Grande</h1>
+      <p style="color:var(--fg2);margin-top:8px;font-size:14px;">4 dias de academia, braço treinado nos 4. Progressão por carga, registrada a cada treino.</p>
       <div class="x_card" style="margin-top:14px">
         <div class="x_lbl">Semana Padrão</div>
         <div id="x-week-grid" class="x_week"></div>
         <div style="display:flex;gap:12px;margin-top:10px;flex-wrap:wrap;font-size:11px;color:var(--fg2)">
-          <span>💪 4× força</span><span>🫁 2× fôlego + zona 2</span><span>⚽ 1× futebol</span>
+          <span>💪 braço 4×/semana (~20 séries de bíceps e ~22 de tríceps)</span><span>⚽ quinta</span><span>🫁 sábado</span>
         </div>
       </div>
     </div>
-
     <div class="c_stats">
       <div class="c_stat"><div class="c_num" id="c-dias-feitos">0</div><div class="c_lbl">Treinos</div></div>
-      <div class="c_stat"><div class="c_num" id="c-dia-atual">1</div><div class="c_lbl">Dia Atual</div></div>
+      <div class="c_stat"><div class="c_num" id="c-dia-atual">—</div><div class="c_lbl">Dia (de 38)</div></div>
       <div class="c_stat"><div class="c_num" id="c-pct">0%</div><div class="c_lbl">Progresso</div></div>
     </div>
     <div class="c_progwrap">
-      <div class="c_proglbl"><span>Início — 12 Out</span><span>Fim — 10 Jan 2027</span></div>
+      <div class="c_proglbl"><span>Início — 25 Nov</span><span>Meta — 1 Jan 2027</span></div>
       <div class="c_progbar"><div class="c_progfill" id="c-prog" style="width:0%"></div></div>
     </div>
-
     <div class="x_card">
-      <div class="x_lbl">Como o sistema de progresso funciona</div>
+      <div class="x_lbl">Como progredir (dupla progressão)</div>
       <ol class="x_rules">
-        <li><strong>Cada exercício tem níveis</strong> (ex.: flexão inclinada → clássica → pausa → déficit → arqueiro). Você treina o nível atual.</li>
-        <li><strong>Faixa de reps</strong> (ex.: 4 × 8–15). Registre as reps de cada série no app.</li>
-        <li><strong>Bateu o topo da faixa em todas as séries?</strong> O app sobe você de nível automaticamente e você recomeça no fundo da faixa.</li>
-        <li><strong>Pare 1–2 reps antes da falha</strong> nas primeiras séries; a última pode ir até a falha técnica.</li>
-        <li>Descanso: 90s–2min entre séries. Pressa mata hipertrofia.</li>
+        <li><strong>Cada exercício tem uma faixa</strong> (ex.: 4 × 8–12). Anote o kg e as reps de cada série.</li>
+        <li><strong>Bateu o topo da faixa em todas as séries?</strong> O app manda subir o peso no próximo treino.</li>
+        <li><strong>Ficou abaixo do mínimo?</strong> O app manda tirar peso. Execução limpa vale mais que carga roubada.</li>
+        <li><strong>Última série de cada exercício de braço vai até a falha.</strong> As outras param 1–2 reps antes.</li>
+        <li>Descanso: 2 min nos pesados, 60–90s nos de braço.</li>
       </ol>
     </div>
-
-    <div class="c_aviso"><strong>⚡ Verdade importante:</strong> músculo só cresce com <strong>3 coisas juntas</strong>: progressão (o app cuida), comida acima do gasto (com corrida extra você gasta mais — veja Nutrição) e sono de 7h+. Faltou uma, o resultado trava. E sobre o fôlego: 14 dias dão uma melhora real mas <strong>modesta</strong> (algo como 3–6% de capacidade aeróbica). O resto do ganho no jogo vem de chegar descansado, bem alimentado e de dosar o esforço — o plano já inclui isso.</div>
+    <div class="c_aviso"><strong>⚡ Expectativa real:</strong> em 5 semanas, um ganho bom de braço é <strong>1 a 2 cm</strong> de medida, parte disso volume de glicogênio e água por comer bem. Não existe "ganho absurdo" em 37 dias, com nenhum treino. O que faz o braço <em>parecer</em> bem maior até lá: <strong>tríceps</strong> (é 2/3 do braço, por isso ele tem mais séries), <strong>ombro lateral</strong> (alarga a silhueta) e comer acima do gasto todos os dias. Faltou comida ou sono, o treino não compensa.</div>
   </div>
 
   <!-- TREINO -->
@@ -568,27 +565,24 @@ nav::-webkit-scrollbar{display:none;}
   <div id="cs-progresso" class="c_section">
     <h2 style="margin-bottom:12px">Progresso</h2>
     <div class="c_stats" id="x-prog-stats"></div>
-
-    <div class="x_lbl">Exercícios — nível e reps totais por sessão</div>
-    <div id="x-prog-list"></div>
-
-    <div class="x_card" style="margin-top:14px">
-      <div class="x_lbl">Corpo (meça toda segunda, de manhã, em jejum)</div>
+    <div class="x_card">
+      <div class="x_lbl">Medida do braço (toda segunda, de manhã, antes de treinar)</div>
+      <p style="font-size:12px;color:var(--fg2);margin-bottom:10px">Braço direito, contraído, na parte mais grossa. Mesma fita, mesmo lugar, sempre frio (nunca depois do treino: o pump engana).</p>
       <div class="x_row">
-        <label class="x_field">Peso (kg)<input type="number" inputmode="decimal" step="0.1" id="x-peso" class="x_inp"></label>
         <label class="x_field">Braço (cm)<input type="number" inputmode="decimal" step="0.1" id="x-braco" class="x_inp"></label>
+        <label class="x_field">Peso (kg)<input type="number" inputmode="decimal" step="0.1" id="x-peso" class="x_inp"></label>
       </div>
       <button class="save-btn" onclick="xSaveBody()">💾 Salvar medida</button>
       <div id="x-body"></div>
     </div>
-
+    <div class="x_lbl" style="margin-top:14px">Carga por exercício</div>
+    <div id="x-prog-list"></div>
     <div class="c_divider"></div>
     <h3 style="margin-bottom:10px">Fotos</h3>
     <div class="c_mlist">
-      <div class="c_ms"><div class="c_mdot" style="border-color:var(--accent)">📸</div><div class="c_mi"><h4>Foto Inicial — Dia 1</h4><p>12 de Outubro 2026 · Frente, lado e costas</p></div></div>
-      <div class="c_ms"><div class="c_mdot">📸</div><div class="c_mi"><h4>Foto Mês 1 — Dia 30</h4><p>11 de Novembro 2026</p></div></div>
-      <div class="c_ms"><div class="c_mdot">📸</div><div class="c_mi"><h4>Foto Mês 2 — Dia 60</h4><p>11 de Dezembro 2026</p></div></div>
-      <div class="c_ms"><div class="c_mdot">🏆</div><div class="c_mi"><h4>Final — Dia 90</h4><p>10 de Janeiro 2027 · Comprar halteres 💪</p></div></div>
+      <div class="c_ms"><div class="c_mdot" style="border-color:var(--accent)">📸</div><div class="c_mi"><h4>Foto inicial</h4><p>25 de Novembro · braço de frente e de lado, contraído e relaxado</p></div></div>
+      <div class="c_ms"><div class="c_mdot">📸</div><div class="c_mi"><h4>Meio do caminho</h4><p>12 de Dezembro · mesma luz, mesmo lugar</p></div></div>
+      <div class="c_ms"><div class="c_mdot">🏆</div><div class="c_mi"><h4>Final</h4><p>1 de Janeiro 2027 · compare com a inicial</p></div></div>
     </div>
   </div>
 
@@ -602,32 +596,35 @@ nav::-webkit-scrollbar{display:none;}
   <!-- NUTRIÇÃO -->
   <div id="cs-nutri" class="c_section">
     <h2 style="margin-bottom:4px">Nutrição</h2>
-    <p style="color:var(--fg2);font-size:13px;margin-bottom:14px">~2.300 kcal base · ~150g proteína · bulk limpo</p>
+    <p style="color:var(--fg2);font-size:13px;margin-bottom:12px">Base: ovo. Meta: ~40 kcal e 2g de proteína por kg de peso.</p>
+    <div class="x_card">
+      <label class="x_field" style="max-width:160px">Seu peso (kg)<input type="number" inputmode="decimal" step="0.1" id="x-nut-peso" class="x_inp" onchange="xSaveNutPeso()"></label>
+      <div id="x-nut-out" style="margin-top:12px"></div>
+    </div>
+    <div class="c_aviso"><strong>Por que não só ovo:</strong> um ovo tem ~6g de proteína. Para bater ~140g só com ovo seriam mais de 20 ovos por dia: inviável e enjoa em uma semana. O plano usa <strong>6 ovos/dia</strong> como base e completa com frango, leite e feijão, que também são baratos.</div>
     <div class="c_ngrid">
-      <div class="c_nc">
-        <div class="c_nt">Café da Manhã</div><div class="c_nk">~250</div>
-        <div class="c_nd">2 ovos mexidos<br>1 banana ou maçã</div>
-      </div>
-      <div class="c_nc">
-        <div class="c_nt">Almoço</div><div class="c_nk">~800</div>
-        <div class="c_nd">200g frango ou carne<br>150g arroz cozido<br>Feijão + legumes<br>Fio de azeite</div>
+      <div class="c_nc" style="grid-column:1/-1">
+        <div class="c_nt">Café da manhã</div><div class="c_nk">~650</div>
+        <div class="c_nd">4 ovos mexidos · 2 pães ou 1 cuscuz · 300ml de leite · 1 banana<br><span style="color:var(--acc-fg);font-weight:700">~45g proteína</span></div>
       </div>
       <div class="c_nc" style="grid-column:1/-1">
-        <div class="c_nt">Shake Pós-Treino</div><div class="c_nk">~700</div>
-        <div class="c_nd"><strong>2 doses whey (60g)</strong> + 400ml leite integral + 1 banana + 2 col. aveia + 1 col. pasta amendoim<br><span style="color:var(--accent);font-size:11px;font-weight:700;">→ ~55g proteína</span></div>
+        <div class="c_nt">Almoço</div><div class="c_nk">~750</div>
+        <div class="c_nd">150g de frango (peito ou coxa) · 4 colheres de arroz · 1 concha de feijão · salada<br><span style="color:var(--acc-fg);font-weight:700">~55g proteína</span></div>
+      </div>
+      <div class="c_nc">
+        <div class="c_nt">Pré-treino</div><div class="c_nk">~350</div>
+        <div class="c_nd">Pão com pasta de amendoim + banana, 1h antes</div>
+      </div>
+      <div class="c_nc">
+        <div class="c_nt">Ceia</div><div class="c_nk">~300</div>
+        <div class="c_nd">300ml de leite + 3 col. de aveia</div>
       </div>
       <div class="c_nc" style="grid-column:1/-1">
-        <div class="c_nt">Jantar</div><div class="c_nk">~550</div>
-        <div class="c_nd">200g peixe ou ovo (4 unid.)<br>Batata doce 150g ou arroz<br>Salada à vontade</div>
+        <div class="c_nt">Jantar (pós-treino)</div><div class="c_nk">~600</div>
+        <div class="c_nd">2 ovos + 100g de frango ou carne moída · arroz · feijão<br><span style="color:var(--acc-fg);font-weight:700">~45g proteína</span></div>
       </div>
     </div>
-    <div class="c_mbar">
-      <div class="c_mp">Proteína<span style="color:var(--accent)">~150g</span></div>
-      <div class="c_mp">Carbo<span style="color:var(--blue)">~250g</span></div>
-      <div class="c_mp">Gordura<span style="color:var(--green)">~65g</span></div>
-      <div class="c_mp">Total<span>~2.300</span></div>
-    </div>
-    <div class="c_aviso" style="margin-top:16px"><strong>Dias de fôlego (terça, sábado) e de jogo:</strong> some ~300 kcal de carboidrato (mais 1 concha de arroz + 1 banana). Corrida sem comida extra come o ganho de massa.<br><br><strong>Dia de jogo:</strong> refeição com arroz/macarrão 3h antes, banana 1h antes, 500ml de água na última hora. Nada pesado ou gorduroso.<br><br><strong>Regra do peso:</strong> não subiu 0,5–1kg no mês → come mais. Subiu +1,5kg → tira 200 kcal.</div>
+    <div class="c_aviso"><strong>Regras:</strong> creatina 3–5g todo dia, inclusive no descanso. Se tiver whey, 1 dose substitui o frango do jantar. Pese toda segunda: subir 0,3–0,5 kg por semana é o ritmo certo. Não subiu em 2 semanas → some 1 concha de arroz por dia. Sábado (corrida) e quinta (futebol): +1 banana e +1 concha de arroz.</div>
   </div>
 </div><!-- /hpage-cal -->
 
@@ -742,8 +739,8 @@ function renderCalCount(){
 
   // mini calendário
   const labels=['S','T','Q','Q','S','S','D'];
-  // Seg Upper A · Ter 4×4 · Qua Upper B · Qui futebol · Sex Pernas · Sáb Upper C · Dom zona 2
-  const dayType=['cal','run','cal','fut','cal','cal','run'];
+  // Seg–Qui academia (Qui + futebol) · Sex descanso · Sáb 4×4 · Dom livre
+  const dayType=['cal','cal','cal','fut','off','run','off'];
   const dayColors={cal:'var(--accent)','fut+cal':'var(--green)',fut:'var(--green)',run:'#ff6b35',off:'var(--fg2)'};
   document.getElementById('cal-week-grid').innerHTML=week.map((d,i)=>{
     const isDone=calCount.days.includes(d);
@@ -929,17 +926,16 @@ function renderSessions(){
 }
 
 // ═══════════════════════════════════════════════════════
-// CALISTENIA — HIPERTROFIA + FÔLEGO
+// ACADEMIA — FOCO BRAÇOS (25 NOV → 1 JAN) + FÔLEGO
 // ═══════════════════════════════════════════════════════
-const C_INICIO=new Date(2026,9,12);
-const C_TOTAL=90;
+const C_INICIO=new Date(2026,10,25);
+const C_TOTAL=38; // 25/11 → 01/01
 const C_DIAS_SEMANA=['Dom','Seg','Ter','Qua','Qui','Sex','Sáb'];
-const C_TREINO_DAYS=[1,3,5,6]; // dias de força: Seg, Qua, Sex, Sáb
+const C_TREINO_DAYS=[1,2,3,4]; // Seg–Qui
 
 const dKey=d=>`${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`;
 const dParse=k=>new Date(k+'T12:00:00');
 const dFmt=(k,o)=>dParse(k).toLocaleDateString('pt-BR',o||{weekday:'short',day:'2-digit',month:'2-digit'});
-const esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
 
 function cToday(){
   const n=new Date(),s=new Date(C_INICIO);
@@ -949,111 +945,58 @@ function cToday(){
 function cDow(o){const d=new Date(C_INICIO);d.setDate(d.getDate()+o);return d.getDay();}
 function cOffsetOf(key){const s=new Date(C_INICIO);s.setHours(12,0,0,0);return Math.round((dParse(key)-s)/86400000);}
 
-// ── BIBLIOTECA DE EXERCÍCIOS (níveis = progressão) ──
-// cada nível: [nome, como fazer, repsMin, repsMax]
+// ── EXERCÍCIOS ──
+// sets, faixa de reps [min,max], inc = kg a somar quando bater o topo em todas as séries
 const XLIB={
-  pull:{nome:'Barra Fixa (pronada)',musc:'Costas largas',sets:4,lv:[
-    ['Negativa 5s','Pula ao topo, desce em 5s contando. Conta cada descida como 1 rep.',3,6],
-    ['Pull-up','Queixo acima da barra, desce até braço quase estendido.',3,6],
-    ['Pull-up','Mesma execução, faixa maior.',6,10],
-    ['Pull-up pausa 2s no topo','Segura 2s com queixo acima da barra.',6,10],
-    ['Pull-up com mochila','Mochila com livros/garrafas (~5kg).',5,8],
-  ]},
-  chin:{nome:'Chin-up (supinada)',musc:'Costas + Bíceps',sets:3,lv:[
-    ['Negativa supinada 5s','Palmas para você. Desce em 5s.',3,6],
-    ['Chin-up','Palmas para você, cotovelos para baixo.',3,6],
-    ['Chin-up','Faixa maior.',6,10],
-    ['Chin-up descida 3s','Sobe normal, desce em 3s.',6,10],
-  ]},
-  row:{nome:'Remada Invertida',musc:'Costas médias',sets:4,lv:[
-    ['Joelhos dobrados','Barra baixa ou mesa firme. Peito vai até a barra.',8,15],
-    ['Pernas retas','Corpo reto como prancha.',8,15],
-    ['Pés elevados','Pés numa cadeira, corpo paralelo ao chão.',8,15],
-    ['Pés elevados + pausa 2s','Segura 2s com peito na barra.',8,12],
-    ['Remada arqueiro','Um braço puxa, o outro fica estendido de apoio.',6,10],
-  ]},
-  bic:{nome:'Remada Supinada Fechada',musc:'Bíceps',sets:3,lv:[
-    ['Joelhos dobrados','Palmas para cima, mãos juntas. Puxa com o bíceps, cotovelo colado.',8,15],
-    ['Pernas retas','Mesma pegada, corpo reto.',8,15],
-    ['Pés elevados','Pés numa cadeira.',8,15],
-  ]},
-  push:{nome:'Flexão',musc:'Peito',sets:4,lv:[
-    ['Flexão inclinada','Mãos no sofá/mesa. Peito até a borda.',8,15],
-    ['Flexão clássica','Cotovelos a 45°. Peito quase toca o chão.',8,15],
-    ['Flexão pausa 2s embaixo','Para 2s a 2cm do chão.',8,15],
-    ['Flexão déficit','Mãos em livros/cadeiras, desce além da linha das mãos.',8,15],
-    ['Flexão arqueiro','Carrega o peso num braço, o outro estendido.',6,10],
-    ['Pseudo-planche push-up','Mãos na linha da cintura, corpo inclinado à frente.',6,10],
-  ]},
-  pike:{nome:'Pike Push-up',musc:'Ombros',sets:3,lv:[
-    ['Pike no chão','Corpo em V invertido, cabeça desce entre as mãos.',6,12],
-    ['Pike pés elevados','Pés no sofá.',6,12],
-    ['Pike pés elevados alto','Quadril em cima dos ombros.',6,12],
-    ['Parada de mão negativa','De frente pra parede, desce em 4s.',3,6],
-    ['Parada de mão na parede','Push-up completo invertido.',3,8],
-  ]},
-  dip:{nome:'Mergulho',musc:'Tríceps + Peito inferior',sets:3,lv:[
-    ['No banco, joelhos dobrados','Mãos no sofá/cadeira atrás do corpo.',8,15],
-    ['No banco, pernas retas','Calcanhar no chão, mais longe.',8,15],
-    ['Entre duas cadeiras','Cadeiras firmes, encostadas na parede. Desce até 90°.',6,12],
-    ['Cadeiras com pausa 2s embaixo','Para 2s no fundo.',6,12],
-  ]},
-  tri:{nome:'Tríceps',musc:'Tríceps',sets:3,lv:[
-    ['Flexão fechada inclinada','Mãos juntas no sofá, cotovelos colados.',8,15],
-    ['Flexão diamante','Mãos em losango no chão.',8,15],
-    ['Extensão de tríceps no sofá','Mãos no sofá, dobra só o cotovelo, testa vai até as mãos.',8,15],
-    ['Extensão de tríceps no chão','Mesma coisa com mãos no chão (bem difícil).',6,12],
-  ]},
-  squat:{nome:'Agachamento',musc:'Quadríceps + Glúteo',sets:3,lv:[
-    ['Agachamento livre 3s descida','Desce em 3s, sobe forte.',12,20],
-    ['Agachamento búlgaro','Pé de trás no sofá. Reps por perna.',8,15],
-    ['Búlgaro pausa 2s','Para 2s embaixo. Reps por perna.',8,15],
-    ['Búlgaro com mochila','Mochila carregada. Reps por perna.',8,12],
-    ['Pistol no banco','Uma perna, senta no banco e levanta.',5,10],
-  ]},
-  hinge:{nome:'Posterior + Glúteo',musc:'Posterior de coxa',sets:3,lv:[
-    ['Hip thrust 2 pernas','Ombros no sofá, segura 1s no topo.',12,20],
-    ['Hip thrust 1 perna','Reps por perna.',8,15],
-    ['Nordic negativa','Pés presos sob o sofá, desce o mais devagar possível.',3,6],
-  ]},
-  calf:{nome:'Panturrilha',musc:'Panturrilha',sets:3,lv:[
-    ['2 pernas no degrau','Calcanhar desce abaixo do degrau.',15,25],
-    ['1 perna no degrau','Reps por perna. Segura 1s no topo.',10,20],
-  ]},
-  core:{nome:'Core na Barra',musc:'Abdômen',sets:3,lv:[
-    ['Elevação de joelhos','Pendurado, joelhos ao peito sem balançar.',8,15],
-    ['Elevação de pernas retas','Pernas até 90°.',6,12],
-    ['Toes to bar','Pés tocam a barra.',5,10],
-  ]},
-  pyr:{nome:'Flexão Pirâmide',musc:'Resistência de peito/tríceps',pyr:true},
+  leg:{nome:'Leg Press',musc:'Quadríceps',sets:3,min:10,max:15,inc:10,dica:'Desce até 90° no joelho. Não trava o joelho em cima.'},
+  agach:{nome:'Agachamento (livre ou Smith)',musc:'Pernas',sets:3,min:8,max:12,inc:2.5,dica:'Desce controlado em 2s. Peso total da barra.'},
+  flexora:{nome:'Cadeira Flexora',musc:'Posterior',sets:3,min:10,max:15,inc:5,dica:'Segura 1s com a perna dobrada.'},
+  elev:{nome:'Elevação Lateral',musc:'Ombro (deixa o braço mais largo)',sets:4,min:12,max:20,inc:1,dica:'Peso de cada halter. Sobe até a linha do ombro, sem balançar o tronco.'},
+  supino:{nome:'Supino Reto',musc:'Peito',sets:4,min:6,max:10,inc:2.5,dica:'Peso total da barra. Desce até tocar o peito.'},
+  incl:{nome:'Supino Inclinado Halter',musc:'Peito superior',sets:3,min:8,max:12,inc:1,dica:'Peso de cada halter. Banco a 30°.'},
+  puxada:{nome:'Puxada Frente',musc:'Costas',sets:4,min:8,max:12,inc:5,dica:'Puxa até o queixo, peito estufado.'},
+  remada:{nome:'Remada Baixa',musc:'Costas',sets:3,min:8,max:12,inc:5,dica:'Cotovelos colados, segura 1s atrás.'},
+  // BÍCEPS
+  rdireta:{nome:'Rosca Direta (barra W)',musc:'Bíceps',sets:4,min:6,max:10,inc:2,dica:'Peso total da barra. Cotovelo parado, sem jogar o corpo. Desce em 2–3s.',arm:1},
+  rincl:{nome:'Rosca Inclinada Halter',musc:'Bíceps (cabeça longa = pico)',sets:3,min:8,max:12,inc:1,dica:'Peso de cada halter. Banco a 45°, braço solto para trás: alonga muito o bíceps.',arm:1},
+  rscott:{nome:'Rosca Scott',musc:'Bíceps',sets:3,min:8,max:12,inc:2,dica:'Não estica 100% embaixo para não forçar o cotovelo.',arm:1},
+  martelo:{nome:'Rosca Martelo',musc:'Braquial + antebraço (engrossa o braço)',sets:3,min:10,max:15,inc:1,dica:'Peso de cada halter. Pegada neutra.',arm:1},
+  ralt:{nome:'Rosca Alternada',musc:'Bíceps',sets:3,min:8,max:12,inc:1,dica:'Peso de cada halter. Gira o punho subindo.',arm:1},
+  rconc:{nome:'Rosca Concentrada',musc:'Bíceps',sets:3,min:10,max:15,inc:1,dica:'Aperta 1s em cima. Última série até a falha.',arm:1},
+  // TRÍCEPS (2/3 do braço)
+  testa:{nome:'Tríceps Testa (barra W)',musc:'Tríceps (cabeça longa)',sets:4,min:8,max:12,inc:2,dica:'Barra desce atrás da testa, cotovelos apontados para cima.',arm:1},
+  supfech:{nome:'Supino Fechado',musc:'Tríceps (carga pesada)',sets:4,min:6,max:10,inc:2.5,dica:'Mãos na largura dos ombros, cotovelos colados.',arm:1},
+  corda:{nome:'Tríceps Corda (polia)',musc:'Tríceps',sets:3,min:10,max:15,inc:2.5,dica:'Abre a corda embaixo e segura 1s.',arm:1},
+  frances:{nome:'Tríceps Francês Halter',musc:'Tríceps (cabeça longa)',sets:3,min:10,max:15,inc:2,dica:'Um halter com as duas mãos atrás da cabeça. Alongamento total.',arm:1},
+  paralela:{nome:'Paralela (mergulho)',musc:'Tríceps + peito',sets:3,min:6,max:12,inc:2.5,dica:'Kg = peso extra (0 se for só o corpo). Tronco reto foca tríceps.',arm:1},
+  tpolia:{nome:'Tríceps Polia Barra',musc:'Tríceps',sets:3,min:10,max:15,inc:2.5,dica:'Cotovelo parado ao lado do corpo.',arm:1},
+  punho:{nome:'Rosca de Punho',musc:'Antebraço',sets:3,min:15,max:20,inc:2,dica:'Antebraço apoiado no banco, só o punho se mexe.',arm:1},
 };
 
-// ── TREINOS DA SEMANA ──
-// dow: 0=Dom..6=Sáb
+// ── TREINOS (dow: 1=Seg … 4=Qui) ──
 const XW={
-  A:{dow:1,nome:'Upper A — Pesado',cor:'var(--accent)',ex:['pull','push','row','pike','pyr'],nota:'Treino mais pesado da semana. Barra fixa primeiro, com energia total.'},
-  F:{dow:2,nome:'Fôlego 4×4 + Core',cor:'var(--red)',ex:['core'],fol:'4x4',nota:'Faça o 4×4 primeiro (cronômetro na aba Fôlego). Core depois.'},
-  B:{dow:3,nome:'Upper B — Moderado',cor:'var(--blue)',ex:['chin','dip','bic','tri','pyr'],nota:'Véspera do futebol: pare 2 reps antes da falha em tudo. Sem pernas.'},
-  P:{dow:5,nome:'Pernas',cor:'var(--orange)',ex:['squat','hinge','calf','core'],nota:'Pernas na sexta = 6 dias até o próximo futebol, sem dor muscular no jogo.'},
-  C:{dow:6,nome:'Upper C — Volume + Sprints',cor:'var(--green)',ex:['pull','push','row','dip','pyr'],fol:'rsa',nota:'Força primeiro, sprints depois (cronômetro na aba Fôlego).'},
+  A:{dow:1,nome:'Pernas + Ombro + Braços',cor:'var(--orange)',ex:['agach','leg','flexora','elev','ralt','corda'],nota:'Pernas na segunda = recuperadas até o futebol de quinta. Fecha com braço leve.'},
+  B:{dow:2,nome:'Peito + Tríceps',cor:'var(--blue)',ex:['supino','incl','testa','paralela','tpolia','rscott'],nota:'Tríceps é 2/3 do braço: este é o dia que mais aumenta a medida.'},
+  C:{dow:3,nome:'Costas + Bíceps',cor:'var(--green)',ex:['puxada','remada','rdireta','rincl','martelo','frances'],nota:'Costas primeiro, bíceps com tudo depois.'},
+  D:{dow:4,nome:'BRAÇOS',cor:'var(--accent)',ex:['supfech','rdireta','corda','rconc','frances','martelo','punho'],nota:'Dia só de braço. Alterna tríceps e bíceps. Treine cedo: à noite tem futebol.'},
 };
-const XWEEK=[ // seg→dom
-  {k:'A',ico:'💪',t:'Upper A'},{k:'F',ico:'🫁',t:'4×4'},{k:'B',ico:'💪',t:'Upper B'},
-  {k:'J',ico:'⚽',t:'Futebol'},{k:'P',ico:'🦵',t:'Pernas'},{k:'C',ico:'💪',t:'Upper C'},{k:'Z',ico:'🚶',t:'Zona 2'}];
+const XWEEK=[
+  {k:'A',ico:'🦵',t:'Pernas'},{k:'B',ico:'💪',t:'Peito+Tri'},{k:'C',ico:'💪',t:'Costas+Bi'},
+  {k:'D',ico:'🔥',t:'Braços+⚽'},{k:'R',ico:'😴',t:'Descanso'},{k:'F',ico:'🫁',t:'4×4'},{k:'Z',ico:'🚶',t:'Livre'}];
 
 // ── ESTADO ──
-let xLevels=ls.get('cx_levels',{});            // {exId: nivel}
-let xLogs=ls.get('cx_logs',[]);                // [{date, w, e:{exId:{lv, r:[reps]}}}]
-let xFol=ls.get('cx_fol',{});                  // {date:{done, rpe}}
-let xJogos=ls.get('cx_jogos',[]);              // [{date,nota,min}]
-let xBody=ls.get('cx_body',[]);                // [{date,peso,braco}]
+let xLoad=ls.get('gx_load',{});      // {exId: kg sugerido}
+let xLogs=ls.get('gx_logs',[]);      // [{date,w,e:{exId:{kg,r:[reps]}}}]
+let xFol=ls.get('cx_fol',{});
+let xJogos=ls.get('cx_jogos',[]);
+let xBody=ls.get('gx_body',[]);      // [{date,peso,braco}]
 let xGame=ls.get('cx_game','2026-12-03');
 
-const xLv=id=>Math.min(xLevels[id]||0,(XLIB[id].lv||[0]).length-1);
 function xLastEntry(id,beforeDate){
   for(let i=xLogs.length-1;i>=0;i--){const L=xLogs[i];if(beforeDate&&L.date>=beforeDate)continue;if(L.e[id])return {date:L.date,...L.e[id]};}
   return null;
 }
+const fmtKg=k=>(Math.round(k*10)/10).toString().replace('.',',');
 
 function showCal(id,btn){
   document.querySelectorAll('.c_section').forEach(s=>s.classList.remove('active'));
@@ -1063,11 +1006,12 @@ function showCal(id,btn){
   if(id==='progresso')xRenderProg();
   if(id==='folego')xRenderFol();
   if(id==='calendario')cBuildCal();
+  if(id==='nutri')xRenderNutri();
 }
 
 // ── VISÃO ──
 function xRenderWeek(){
-  const cols={A:'var(--accent)',B:'var(--blue)',C:'var(--green)',F:'var(--red)',P:'var(--orange)',J:'var(--green)',Z:'var(--fg2)'};
+  const cols={A:'var(--orange)',B:'var(--blue)',C:'var(--green)',D:'var(--accent)',R:'var(--fg2)',F:'var(--red)',Z:'var(--fg2)'};
   const hd=['SEG','TER','QUA','QUI','SEX','SÁB','DOM'];
   document.getElementById('x-week-grid').innerHTML=
     hd.map(h=>`<div class="x_wh">${h}</div>`).join('')+
@@ -1075,10 +1019,10 @@ function xRenderWeek(){
 }
 function cUpdateStats(){
   const t=cToday();
-  const dAtual=Math.max(1,Math.min(t+1,C_TOTAL));
-  const pct=Math.max(0,Math.min(Math.round((t/C_TOTAL)*100),100));
-  document.getElementById('c-dias-feitos').textContent=ls.get('cf_days',[]).length;
-  document.getElementById('c-dia-atual').textContent=dAtual;
+  const dAtual=Math.max(0,Math.min(t+1,C_TOTAL));
+  const pct=Math.max(0,Math.min(Math.round((t/(C_TOTAL-1))*100),100));
+  document.getElementById('c-dias-feitos').textContent=xLogs.length;
+  document.getElementById('c-dia-atual').textContent=t<0?'—':dAtual;
   document.getElementById('c-pct').textContent=pct+'%';
   document.getElementById('c-prog').style.width=pct+'%';
 }
@@ -1086,7 +1030,7 @@ function cUpdateStats(){
 // ── CALENDÁRIO ──
 function cBuildCal(){
   const wrap=document.getElementById('c-cal-wrap');
-  const done=ls.get('cf_days',[]);
+  const done=xLogs.map(L=>cOffsetOf(L.date));
   const t=cToday();
   const startDow=C_INICIO.getDay();
   const cells=[];
@@ -1101,7 +1045,6 @@ function cBuildCal(){
       const m=d.getMonth();
       if(m!==prevMonth){
         if(prevMonth!==-1){
-          // completa a última linha do mês anterior
           const pad=(7-(grid.match(/c_day/g)||[]).length%7)%7;
           grid+='<div class="c_day emp"></div>'.repeat(pad);
           html+=`<div class="c_cal-grid">${grid}</div>`;
@@ -1112,35 +1055,27 @@ function cBuildCal(){
       }
     }
     if(off===null){grid+='<div class="c_day emp"></div>';continue;}
-    const dow=cDow(off);
+    const d=new Date(C_INICIO);d.setDate(d.getDate()+off);
     let cls='c_day';
-    if(!C_TREINO_DAYS.includes(dow))cls+=' rest';
+    if(!C_TREINO_DAYS.includes(cDow(off)))cls+=' rest';
     if(done.includes(off))cls+=' done';
     if(off===t)cls+=' tod';
-    grid+=`<div class="${cls}" onclick="cToggleDay(${off})">${off+1}</div>`;
+    grid+=`<div class="${cls}">${d.getDate()}</div>`;
   }
   html+=`<div class="c_cal-grid">${grid}</div>`;
   wrap.innerHTML=html;
-}
-function cToggleDay(off){
-  const done=ls.get('cf_days',[]);
-  const i=done.indexOf(off);
-  if(i>=0)done.splice(i,1);else done.push(off);
-  ls.set('cf_days',done);
-  cBuildCal();cUpdateStats();
 }
 
 // ── TREINO ──
 let cDiaAtivo='A';
 function xTodayWorkout(){
   const dow=new Date().getDay();
-  const k=Object.keys(XW).find(k=>XW[k].dow===dow);
-  return k||'A';
+  return Object.keys(XW).find(k=>XW[k].dow===dow)||'A';
 }
 function cBuildChips(){
   document.getElementById('c-chips').innerHTML=Object.keys(XW).map(k=>{
     const w=XW[k];
-    return `<button class="c_chip${k===cDiaAtivo?' active':''}" onclick="cSelectDia('${k}')">${C_DIAS_SEMANA[w.dow]} · ${w.nome.split(' — ')[0]}</button>`;
+    return `<button class="c_chip${k===cDiaAtivo?' active':''}" onclick="cSelectDia('${k}')">${C_DIAS_SEMANA[w.dow]} · ${w.nome.split(' + ')[0]}</button>`;
   }).join('');
 }
 function cSelectDia(k){cDiaAtivo=k;cBuildChips();cBuildTreino(k);}
@@ -1154,14 +1089,8 @@ function cBuildTreino(k){
     <div style="font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:${w.cor}">${C_DIAS_SEMANA[w.dow]}${w.dow===dow?' · hoje':''}</div>
     <h3 style="font-size:1.5rem">${w.nome}</h3>
     <p style="font-size:13px;color:var(--fg2)">${w.nota}</p>
-    ${savedToday?'<p style="font-size:12px;color:var(--green);margin-top:6px">✓ Já registrado hoje — salvar de novo substitui.</p>':''}
+    ${savedToday?'<p style="font-size:12px;color:var(--green);margin-top:6px">✓ Já registrado hoje. Salvar de novo substitui.</p>':''}
   </div>`;
-  if(w.fol){
-    const P=XPRESETS[w.fol];
-    h+=`<div class="x_ex"><div class="x_exhd"><span class="x_exnome">🫁 ${P.nome}</span><span class="c_exser">${P.dur}</span></div>
-      <div class="c_exobs">${P.desc}</div>
-      <button class="ghost-btn" style="margin-top:8px" onclick="xGoFol('${w.fol}')">Abrir cronômetro →</button></div>`;
-  }
   w.ex.forEach(id=>{h+=xExCard(id,savedToday);});
   h+=`<button class="save-btn" style="width:100%;padding:14px" onclick="xSaveTreino('${k}')">💾 Salvar treino de hoje</button>
       <div id="x-save-msg"></div>`;
@@ -1172,50 +1101,40 @@ function xExCard(id,saved){
   const X=XLIB[id];
   const last=xLastEntry(id,todayKey());
   const cur=saved&&saved.e[id];
-  if(X.pyr){
-    const lastTxt=last?`Última: topo ${last.r[0]} (${last.r[0]*last.r[0]} reps)`:'Primeira vez: descubra seu topo';
-    return `<div class="x_ex"><div class="x_exhd"><span class="x_exnome">🔺 ${X.nome}</span><span class="c_exser">1 pirâmide</span></div>
-      <div class="c_exobs">Sobe 1→2→3… até o topo, depois desce …3→2→1. Descanso entre degraus = nº de reps em segundos. Registre o <strong>topo</strong> que alcançou. Meta: topo 8 em dezembro, 10 em janeiro.</div>
-      <div class="x_last">${lastTxt}</div>
-      <div class="x_sets"><label class="x_set">Topo<input type="number" inputmode="numeric" min="1" max="30" class="x_inp" data-ex="${id}" data-s="0" value="${cur?cur.r[0]:''}" placeholder="${last?last.r[0]:'5'}"></label></div></div>`;
-  }
-  const lv=xLv(id), L=X.lv[lv];
-  const lastTxt=last?(last.lv===lv?`Última (${dFmt(last.date)}): ${last.r.join(' · ')}`:`Última no nível ${last.lv+1}: ${last.r.join(' · ')}`):'Primeira vez neste exercício';
+  const sug=xLoad[id];
+  const lastTxt=last?`Última (${dFmt(last.date)}): ${fmtKg(last.kg)}kg × ${last.r.join(' · ')}`:'Primeira vez: escolha um peso que você aguente com boa execução';
+  const kgVal=cur?cur.kg:'';
+  const kgPh=sug!=null?fmtKg(sug):(last?fmtKg(last.kg):'kg');
   let sets='';
   for(let s=0;s<X.sets;s++){
     const v=cur&&cur.r[s]!=null?cur.r[s]:'';
-    const ph=last&&last.lv===lv&&last.r[s]!=null?last.r[s]:'';
+    const ph=last&&last.r[s]!=null?last.r[s]:'';
     sets+=`<label class="x_set">S${s+1}<input type="number" inputmode="numeric" min="0" max="99" class="x_inp" data-ex="${id}" data-s="${s}" value="${v}" placeholder="${ph}"></label>`;
   }
-  return `<div class="x_ex">
-    <div class="x_exhd"><span class="x_exnome">${X.nome}</span><span class="c_exser">${X.sets} × ${L[2]}–${L[3]}</span></div>
-    <div class="x_lvrow">
-      <button class="x_lvbtn" onclick="xLvShift('${id}',-1)" aria-label="nível anterior">‹</button>
-      <div style="flex:1;min-width:0"><div class="x_lvname">Nível ${lv+1}/${X.lv.length} · ${L[0]}</div>
-      <div class="x_lvbar"><div style="width:${((lv+1)/X.lv.length)*100}%"></div></div></div>
-      <button class="x_lvbtn" onclick="xLvShift('${id}',1)" aria-label="próximo nível">›</button>
-    </div>
-    <div class="c_exobs">${L[1]} <span style="color:var(--fg2)">· ${X.musc}</span></div>
+  return `<div class="x_ex"${X.arm?' style="border-color:var(--accent)"':''}>
+    <div class="x_exhd"><span class="x_exnome">${X.arm?'💪 ':''}${X.nome}</span><span class="c_exser">${X.sets} × ${X.min}–${X.max}</span></div>
+    <div class="c_exobs">${X.dica} <span style="color:var(--fg2)">· ${X.musc}</span></div>
+    ${sug!=null&&last&&sug>last.kg?`<div class="x_lvname" style="margin-top:6px">⬆️ Hoje: suba para ${fmtKg(sug)} kg</div>`:''}
     <div class="x_last">${lastTxt}</div>
-    <div class="x_sets">${sets}</div>
+    <div class="x_sets"><label class="x_set">Kg<input type="number" inputmode="decimal" step="0.5" min="0" class="x_inp" style="width:72px" data-kg="${id}" value="${kgVal}" placeholder="${kgPh}"></label>${sets}</div>
   </div>`;
 }
 
-function xLvShift(id,d){
-  const n=XLIB[id].lv.length;
-  xLevels[id]=Math.max(0,Math.min(n-1,xLv(id)+d));
-  ls.set('cx_levels',xLevels);
-  cBuildTreino(cDiaAtivo);
-}
-
 function xSaveTreino(k){
-  const w=XW[k], today=todayKey(), e={};
+  const today=todayKey(), e={};
   document.querySelectorAll('#c-treino-container input[data-ex]').forEach(inp=>{
     const id=inp.dataset.ex, s=+inp.dataset.s, v=inp.value.trim();
     if(v==='')return;
-    const n=Math.max(0,Math.round(+v));
-    if(!e[id])e[id]={lv:XLIB[id].pyr?0:xLv(id),r:[]};
-    e[id].r[s]=n;
+    if(!e[id])e[id]={kg:0,r:[]};
+    e[id].r[s]=Math.max(0,Math.round(+v));
+  });
+  document.querySelectorAll('#c-treino-container input[data-kg]').forEach(inp=>{
+    const id=inp.dataset.kg;
+    if(!e[id])return;
+    let v=inp.value.trim().replace(',','.');
+    if(v===''){v=inp.placeholder.replace(',','.');}
+    const n=parseFloat(v);
+    e[id].kg=isNaN(n)?0:Math.max(0,n);
   });
   Object.values(e).forEach(x=>{x.r=Array.from(x.r,v=>v==null?0:v);});
   const msgEl=document.getElementById('x-save-msg');
@@ -1225,41 +1144,29 @@ function xSaveTreino(k){
   Object.entries(e).forEach(([id,x])=>{
     const X=XLIB[id];
     const prev=xLastEntry(id,today);
-    const tot=x.r.reduce((a,b)=>a+b,0);
-    if(X.pyr){
-      if(prev&&x.r[0]>prev.r[0])msgs.push(`🔺 Pirâmide: topo ${prev.r[0]} → <strong>${x.r[0]}</strong>`);
-      return;
-    }
-    const L=X.lv[x.lv];
-    const full=x.r.length>=X.sets&&x.r.slice(0,X.sets).every(v=>v>=L[3]);
-    if(full&&x.lv<X.lv.length-1){
-      xLevels[id]=x.lv+1;
-      msgs.push(`⬆️ <strong>${X.nome}</strong>: bateu ${L[3]} em todas as séries → próximo treino: <strong>${X.lv[x.lv+1][0]}</strong>`);
-    }else if(full){
-      msgs.push(`🏆 <strong>${X.nome}</strong>: nível máximo dominado. Adicione peso na mochila.`);
-    }else if(prev&&prev.lv===x.lv){
-      const pt=prev.r.reduce((a,b)=>a+b,0);
-      if(tot>pt)msgs.push(`📈 ${X.nome}: ${pt} → <strong>${tot}</strong> reps totais`);
-      else if(tot<pt)msgs.push(`↘️ ${X.nome}: ${tot} reps (antes ${pt}). Dormiu e comeu bem?`);
+    const full=x.r.length>=X.sets&&x.r.slice(0,X.sets).every(v=>v>=X.max);
+    const weak=x.r[0]!=null&&x.r[0]<X.min;
+    if(full){
+      xLoad[id]=x.kg+X.inc;
+      msgs.push(`⬆️ <strong>${X.nome}</strong>: bateu ${X.max} em todas → próximo treino <strong>${fmtKg(x.kg+X.inc)} kg</strong>`);
+    }else{
+      xLoad[id]=x.kg;
+      if(weak)msgs.push(`⚠️ ${X.nome}: abaixo de ${X.min} reps. Se repetir, tire ${fmtKg(X.inc)} kg.`);
+      else if(prev){
+        const vol=x.kg*x.r.reduce((a,b)=>a+b,0), pv=prev.kg*prev.r.reduce((a,b)=>a+b,0);
+        if(vol>pv)msgs.push(`📈 ${X.nome}: volume ${Math.round(pv)} → <strong>${Math.round(vol)}</strong> kg`);
+      }
     }
   });
-  ls.set('cx_levels',xLevels);
-
+  ls.set('gx_load',xLoad);
   xLogs=xLogs.filter(L=>!(L.date===today&&L.w===k));
   xLogs.push({date:today,w:k,e});
   xLogs.sort((a,b)=>a.date.localeCompare(b.date));
-  ls.set('cx_logs',xLogs);
-
-  // marca calendário 90 dias + contador do checklist
-  const off=cOffsetOf(today);
-  const cd=ls.get('cf_days',[]);
-  if(off>=0&&off<C_TOTAL&&!cd.includes(off)){cd.push(off);ls.set('cf_days',cd);}
+  ls.set('gx_logs',xLogs);
   if(!calCount.days.includes(today)){calCount.total++;calCount.days.push(today);ls.set('hub_calcount',calCount);renderCalCount();}
-  // sessão de fôlego do dia conta como feita se o treino tiver fôlego
   cUpdateStats();
   cBuildTreino(k);
-  document.getElementById('x-save-msg').innerHTML=
-    `<div class="x_msg">✅ Treino salvo.${msgs.length?'<br>'+msgs.join('<br>'):''}</div>`;
+  document.getElementById('x-save-msg').innerHTML=`<div class="x_msg">✅ Treino salvo.${msgs.length?'<br>'+msgs.join('<br>'):''}</div>`;
 }
 
 // ── PROGRESSO ──
@@ -1271,30 +1178,30 @@ function xSpark(vals,marks){
   return `<svg viewBox="0 0 ${W} ${H}" class="x_spark" preserveAspectRatio="none" role="img" aria-label="evolução"><polyline points="${pts.map(q=>q.map(n=>n.toFixed(1)).join(',')).join(' ')}" fill="none" stroke="var(--accent)" stroke-width="2" vector-effect="non-scaling-stroke"/>${dots}</svg>`;
 }
 function xRenderProg(){
-  const sessoes=xLogs.length;
   const semana=xLogs.filter(L=>getWeekDays().includes(L.date)).length;
-  const ups=Object.keys(XLIB).filter(id=>!XLIB[id].pyr).reduce((a,id)=>a+xLv(id),0);
+  const br=xBody.filter(b=>b.braco!=null);
+  const ganho=br.length>=2?br[br.length-1].braco-br[0].braco:null;
   document.getElementById('x-prog-stats').innerHTML=
-    `<div class="c_stat"><div class="c_num">${sessoes}</div><div class="c_lbl">Sessões</div></div>
+    `<div class="c_stat"><div class="c_num">${xLogs.length}</div><div class="c_lbl">Treinos</div></div>
      <div class="c_stat"><div class="c_num">${semana}/4</div><div class="c_lbl">Semana</div></div>
-     <div class="c_stat"><div class="c_num">${ups}</div><div class="c_lbl">Níveis subidos</div></div>`;
+     <div class="c_stat"><div class="c_num">${ganho==null?'—':(ganho>=0?'+':'')+ganho.toFixed(1)}</div><div class="c_lbl">Braço (cm)</div></div>`;
+  const ids=Object.keys(XLIB).sort((a,b)=>(XLIB[b].arm||0)-(XLIB[a].arm||0));
   let h='';
-  Object.keys(XLIB).forEach(id=>{
+  ids.forEach(id=>{
     const X=XLIB[id];
     const hist=xLogs.filter(L=>L.e[id]).map(L=>({date:L.date,...L.e[id]})).slice(-12);
-    const vals=hist.map(x=>X.pyr?x.r[0]:x.r.reduce((a,b)=>a+b,0));
-    const marks=hist.map((x,i)=>i>0&&x.lv>hist[i-1].lv);
-    const lvTxt=X.pyr?(hist.length?`Topo atual: ${vals[vals.length-1]}`:'Sem registro'):`Nível ${xLv(id)+1}/${X.lv.length} · ${X.lv[xLv(id)][0]}`;
-    const best=vals.length?Math.max(...vals):0;
-    h+=`<div class="x_ex">
-      <div class="x_exhd"><span class="x_exnome">${X.nome}</span><span style="font-size:11px;color:var(--fg2)">${hist.length} sessões</span></div>
-      <div style="font-size:12px;color:var(--fg2)">${lvTxt}${vals.length?` · melhor: ${best}${X.pyr?'':' reps'}`:''}</div>
-      ${!X.pyr?`<div class="x_lvbar" style="margin-top:6px"><div style="width:${((xLv(id)+1)/X.lv.length)*100}%"></div></div>`:''}
-      ${xSpark(vals,marks)||(hist.length===1?'<div class="x_last">Mais uma sessão e o gráfico aparece.</div>':'')}
+    if(!hist.length)return;
+    const vals=hist.map(x=>x.kg);
+    const marks=hist.map((x,i)=>i>0&&x.kg>hist[i-1].kg);
+    const lastE=hist[hist.length-1];
+    h+=`<div class="x_ex"${X.arm?' style="border-color:var(--accent)"':''}>
+      <div class="x_exhd"><span class="x_exnome">${X.arm?'💪 ':''}${X.nome}</span><span style="font-size:11px;color:var(--fg2)">${hist.length} sessões</span></div>
+      <div style="font-size:12px;color:var(--fg2)">Atual: ${fmtKg(lastE.kg)} kg × ${lastE.r.join(' · ')} · início: ${fmtKg(hist[0].kg)} kg</div>
+      ${xSpark(vals,marks)}
     </div>`;
   });
-  document.getElementById('x-prog-list').innerHTML=h+
-    '<p style="font-size:11px;color:var(--fg2);margin-top:4px">Gráfico = reps totais por sessão (pirâmide = topo). Ponto amarelo = subiu de nível (as reps caem, é normal).</p>';
+  document.getElementById('x-prog-list').innerHTML=(h||'<div class="empty-state">Salve seu primeiro treino para ver a evolução.</div>')+
+    '<p style="font-size:11px;color:var(--fg2);margin-top:4px">Gráfico = carga (kg) por sessão. Ponto amarelo = subiu o peso.</p>';
   xRenderBody();
 }
 function xSaveBody(){
@@ -1305,22 +1212,40 @@ function xSaveBody(){
   xBody=xBody.filter(b=>b.date!==today);
   xBody.push({date:today,peso:isNaN(peso)?null:peso,braco:isNaN(braco)?null:braco});
   xBody.sort((a,b)=>a.date.localeCompare(b.date));
-  ls.set('cx_body',xBody);
+  ls.set('gx_body',xBody);
+  if(!isNaN(peso))ls.set('gx_peso',peso);
   document.getElementById('x-peso').value='';document.getElementById('x-braco').value='';
-  xRenderBody();
+  xRenderProg();
 }
 function xRenderBody(){
   const el=document.getElementById('x-body');
-  if(!xBody.length){el.innerHTML='<div class="empty-state" style="padding:14px 0">Nenhuma medida ainda</div>';return;}
-  const pesos=xBody.filter(b=>b.peso!=null);
+  if(!xBody.length){el.innerHTML='<div class="empty-state" style="padding:14px 0">Meça amanhã antes do primeiro treino: é seu ponto de partida.</div>';return;}
+  const br=xBody.filter(b=>b.braco!=null), ps=xBody.filter(b=>b.peso!=null);
   let diff='';
-  if(pesos.length>=2){
-    const d=pesos[pesos.length-1].peso-pesos[0].peso;
-    diff=`<div style="font-size:13px;margin:8px 0">Desde ${dFmt(pesos[0].date,{day:'2-digit',month:'2-digit'})}: <strong style="color:${d>=0?'var(--green)':'var(--red)'}">${d>=0?'+':''}${d.toFixed(1)} kg</strong></div>`;
-  }
-  el.innerHTML=diff+xSpark(pesos.map(b=>b.peso))+
-    xBody.slice(-6).reverse().map(b=>`<div class="session-item"><span class="sdate">${dFmt(b.date)}</span><span class="sdur">${b.peso!=null?b.peso.toFixed(1)+' kg':'—'}${b.braco!=null?' · '+b.braco.toFixed(1)+' cm':''}</span></div>`).join('');
+  if(br.length>=2){const d=br[br.length-1].braco-br[0].braco;diff+=`<div style="font-size:13px;margin:8px 0">Braço desde ${dFmt(br[0].date,{day:'2-digit',month:'2-digit'})}: <strong style="color:${d>=0?'var(--green)':'var(--red)'}">${d>=0?'+':''}${d.toFixed(1)} cm</strong></div>`;}
+  if(ps.length>=2){const d=ps[ps.length-1].peso-ps[0].peso;diff+=`<div style="font-size:13px;margin:8px 0">Peso: <strong style="color:${d>=0?'var(--green)':'var(--red)'}">${d>=0?'+':''}${d.toFixed(1)} kg</strong></div>`;}
+  el.innerHTML=diff+xSpark(br.map(b=>b.braco))+
+    xBody.slice(-6).reverse().map(b=>`<div class="session-item"><span class="sdate">${dFmt(b.date)}</span><span class="sdur">${b.peso!=null?fmtKg(b.peso)+' kg':'—'}${b.braco!=null?' · braço '+fmtKg(b.braco)+' cm':''}</span></div>`).join('');
 }
+
+// ── NUTRIÇÃO (calcula pelo peso) ──
+function xRenderNutri(){
+  const peso=ls.get('gx_peso',null);
+  const inp=document.getElementById('x-nut-peso');
+  if(peso&&!inp.value)inp.value=peso;
+  const p=parseFloat((inp.value||'').replace(',','.'));
+  const el=document.getElementById('x-nut-out');
+  if(!(p>35&&p<200)){el.innerHTML='<p style="font-size:13px;color:var(--fg2)">Digite seu peso para calcular suas metas.</p>';return;}
+  const kcal=Math.round(p*40/50)*50, prot=Math.round(p*2), base=2650, dif=kcal-base;
+  el.innerHTML=`<div class="c_mbar" style="margin-top:0">
+      <div class="c_mp">Calorias<span style="color:var(--acc-fg)">${kcal}</span></div>
+      <div class="c_mp">Proteína<span style="color:var(--acc-fg)">${prot}g</span></div>
+      <div class="c_mp">Ovos/dia<span>6</span></div>
+    </div>
+    <p style="font-size:13px;color:var(--fg2);margin-top:8px">O cardápio abaixo dá ~${base} kcal e ~160g de proteína. ${
+      Math.abs(dif)<150?'Já está na sua meta.':dif>0?`Faltam ~${dif} kcal: some ${Math.ceil(dif/130)} concha(s) de arroz ou ${Math.ceil(dif/90)} colher(es) de pasta de amendoim por dia.`:`Passa ~${-dif} kcal: tire ${Math.ceil(-dif/130)} concha(s) de arroz por dia.`}</p>`;
+}
+function xSaveNutPeso(){const p=parseFloat(document.getElementById('x-nut-peso').value.replace(',','.'));if(p>35&&p<200)ls.set('gx_peso',p);xRenderNutri();}
 
 // ── FÔLEGO: PROTOCOLOS ──
 const XPRESETS={
@@ -1340,16 +1265,14 @@ const XPRESETS={
 function xPlanFor(key,gameKey){
   const d=dParse(key), dow=d.getDay();
   const dg=Math.round((dParse(gameKey)-d)/86400000);
-  if(dg===0)return {t:'⚽ JOGO',p:null,c:'var(--green)',n:'Refeição com carbo 3h antes. Comece num ritmo que dá pra sustentar; acelere nos piques, recupere trotando, não andando parado.'};
-  if(dg===1)return {t:'Ativação + descanso',p:'ativ',c:'var(--blue)',n:'Nada de treino pesado. Upper B só se for leve. Durma 8h.'};
-  if(dg===2)return {t:'3×4 reduzido',p:'3x4',c:'var(--red)',n:'Semana do jogo: um bloco a menos. Sem pernas.'};
-  if(dow===4)return {t:'⚽ Futebol',p:null,c:'var(--green)',n:'Conta como treino de fôlego. Avalie a nota no final.'};
-  if(dow===2)return {t:'4×4 Norueguês',p:'4x4',c:'var(--red)',n:'Sessão principal de fôlego.'};
-  if(dow===6)return {t:'Upper C + Sprints',p:'rsa',c:'var(--orange)',n:'Força primeiro, sprints depois.'};
-  if(dow===0)return {t:'Zona 2',p:'z2',c:'var(--fg2)',n:'Opcional: pule se estiver muito cansado.'};
-  if(dow===1)return {t:'Upper A',p:null,c:'var(--accent)',n:'Sem corrida hoje.'};
-  if(dow===3)return {t:'Upper B',p:null,c:'var(--blue)',n:'Sem corrida hoje.'};
-  return {t:'Pernas',p:null,c:'var(--orange)',n:'Sem corrida hoje.'};
+  if(dg===0)return {t:'⚽ JOGO'+(dow===4?' (treino de braço cedo)':''),p:null,c:'var(--green)',n:'Refeição com arroz/macarrão 3h antes, banana 1h antes. Comece num ritmo sustentável; recupere trotando, não parado.'};
+  if(dg===1)return {t:'Academia normal + ativação',p:'ativ',c:'var(--blue)',n:'Treino de academia ok (sem pernas). 15 min de ativação leve depois, opcional. Durma 8h.'};
+  if(dow===6)return {t:dg>0&&dg<=6?'3×4 (semana do jogo)':'4×4 Norueguês',p:dg>0&&dg<=6?'3x4':'4x4',c:'var(--red)',n:'Sessão principal de fôlego. Some 300 kcal de carbo neste dia.'};
+  if(dow===0)return {t:'Zona 2 (opcional)',p:'z2',c:'var(--fg2)',n:'Pule se estiver cansado: recuperação vem antes.'};
+  if(dow===5)return {t:'Descanso',p:null,c:'var(--fg2)',n:'Sem treino. É aqui que o braço cresce.'};
+  if(dow===4)return {t:'Braços + ⚽ Futebol',p:null,c:'var(--accent)',n:'Futebol conta como fôlego. Dê a nota no final.'};
+  const w=Object.values(XW).find(x=>x.dow===dow);
+  return {t:w?w.nome:'Academia',p:null,c:w?w.cor:'var(--accent)',n:dow===1&&dg>0&&dg<=4?'Semana do jogo: pernas com 1 série a menos.':'Sem corrida hoje.'};
 }
 function xSetGame(v){if(!v)return;xGame=v;ls.set('cx_game',v);xRenderFol();}
 function xRenderFol(){
@@ -1528,12 +1451,13 @@ xRenderWeek();
 cUpdateStats();
 cBuildCal();
 cDiaAtivo=xTodayWorkout();
+xRenderNutri();
 cBuildChips();
 cBuildTreino(cDiaAtivo);
 xRenderFol();
 
 // ── BACKUP ──
-const BK_KEYS=['hub_checks','hub_water','hub_calcount','hub_sessions','cf_checked','cf_days','cf_pull','cx_levels','cx_logs','cx_fol','cx_jogos','cx_body','cx_game'];
+const BK_KEYS=['gx_load','gx_logs','gx_body','gx_peso','hub_checks','hub_water','hub_calcount','hub_sessions','cf_checked','cf_days','cf_pull','cx_levels','cx_logs','cx_fol','cx_jogos','cx_body','cx_game'];
 function bkCopy(){
   const o={};BK_KEYS.forEach(k=>{try{const v=localStorage.getItem(k);if(v!=null)o[k]=v;}catch(e){}});
   const txt=JSON.stringify({hub:1,d:o});
