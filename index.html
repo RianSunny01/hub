@@ -477,12 +477,12 @@ nav::-webkit-scrollbar{display:none;}
         <span class="c_badge">ACADEMIA</span>
       </div>
       <h1>Braço<br>Grande</h1>
-      <p style="color:var(--fg2);margin-top:8px;font-size:14px;">4 dias de academia, braço treinado nos 4. Progressão por carga, registrada a cada treino.</p>
+      <p style="color:var(--fg2);margin-top:8px;font-size:14px;">4 dias de academia de até 1 hora, braço treinado nos 4. Progressão por carga, registrada a cada treino.</p>
       <div class="x_card" style="margin-top:14px">
         <div class="x_lbl">Semana Padrão</div>
         <div id="x-week-grid" class="x_week"></div>
         <div style="display:flex;gap:12px;margin-top:10px;flex-wrap:wrap;font-size:11px;color:var(--fg2)">
-          <span>💪 braço 4×/semana (~20 séries de bíceps e ~22 de tríceps)</span><span>⚽ quinta</span><span>🫁 sábado</span>
+          <span>💪 braço 4×/semana (~20 séries de bíceps e ~21 de tríceps)</span><span>⚽ quinta</span><span>🫁 sábado</span>
         </div>
       </div>
     </div>
@@ -502,7 +502,7 @@ nav::-webkit-scrollbar{display:none;}
         <li><strong>Bateu o topo da faixa em todas as séries?</strong> O app manda subir o peso no próximo treino.</li>
         <li><strong>Ficou abaixo do mínimo?</strong> O app manda tirar peso. Execução limpa vale mais que carga roubada.</li>
         <li><strong>Última série de cada exercício de braço vai até a falha.</strong> As outras param 1–2 reps antes.</li>
-        <li>Descanso: 2 min nos pesados, 60–90s nos de braço.</li>
+        <li><strong>Treino de no máximo 1 hora:</strong> 2 min de descanso nos compostos (supino, puxada, agachamento), 60–75s nos de braço. Cada treino mostra o tempo estimado. Não pegue o celular entre as séries.</li>
       </ol>
     </div>
     <div class="c_aviso"><strong>⚡ Expectativa real:</strong> em 5 semanas, um ganho bom de braço é <strong>1 a 2 cm</strong> de medida, parte disso volume de glicogênio e água por comer bem. Não existe "ganho absurdo" em 37 dias, com nenhum treino. O que faz o braço <em>parecer</em> bem maior até lá: <strong>tríceps</strong> (é 2/3 do braço, por isso ele tem mais séries), <strong>ombro lateral</strong> (alarga a silhueta) e comer acima do gasto todos os dias. Faltou comida ou sono, o treino não compensa.</div>
@@ -601,7 +601,7 @@ nav::-webkit-scrollbar{display:none;}
       <label class="x_field" style="max-width:160px">Seu peso (kg)<input type="number" inputmode="decimal" step="0.1" id="x-nut-peso" class="x_inp" onchange="xSaveNutPeso()"></label>
       <div id="x-nut-out" style="margin-top:12px"></div>
     </div>
-    <div class="c_aviso"><strong>Por que não só ovo:</strong> um ovo tem ~6g de proteína. Para bater ~140g só com ovo seriam mais de 20 ovos por dia: inviável e enjoa em uma semana. O plano usa <strong>6 ovos/dia</strong> como base e completa com frango, leite e feijão, que também são baratos.</div>
+    <div class="c_aviso"><strong>Por que não só ovo:</strong> um ovo tem ~6g de proteína. Para bater ~140g só com ovo seriam mais de 20 ovos por dia: inviável e enjoa em uma semana. O plano usa <strong>6 ovos/dia</strong> como base e completa com o shake, frango, leite e feijão.</div>
     <div class="c_ngrid">
       <div class="c_nc" style="grid-column:1/-1">
         <div class="c_nt">Café da manhã</div><div class="c_nk">~650</div>
@@ -611,20 +611,20 @@ nav::-webkit-scrollbar{display:none;}
         <div class="c_nt">Almoço</div><div class="c_nk">~750</div>
         <div class="c_nd">150g de frango (peito ou coxa) · 4 colheres de arroz · 1 concha de feijão · salada<br><span style="color:var(--acc-fg);font-weight:700">~55g proteína</span></div>
       </div>
-      <div class="c_nc">
-        <div class="c_nt">Pré-treino</div><div class="c_nk">~350</div>
-        <div class="c_nd">Pão com pasta de amendoim + banana, 1h antes</div>
-      </div>
-      <div class="c_nc">
-        <div class="c_nt">Ceia</div><div class="c_nk">~300</div>
-        <div class="c_nd">300ml de leite + 3 col. de aveia</div>
+      <div class="c_nc" style="grid-column:1/-1">
+        <div class="c_nt">Pré-treino (1h antes)</div><div class="c_nk">~350</div>
+        <div class="c_nd">Pão com pasta de amendoim + banana</div>
       </div>
       <div class="c_nc" style="grid-column:1/-1">
-        <div class="c_nt">Jantar (pós-treino)</div><div class="c_nk">~600</div>
-        <div class="c_nd">2 ovos + 100g de frango ou carne moída · arroz · feijão<br><span style="color:var(--acc-fg);font-weight:700">~45g proteína</span></div>
+        <div class="c_nt">Shake Pós-Treino</div><div class="c_nk">~700</div>
+        <div class="c_nd"><strong>2 doses whey (60g)</strong> + 400ml leite integral + 1 banana + 2 col. aveia + 1 col. pasta de amendoim<br><span style="color:var(--acc-fg);font-weight:700">~55g proteína · até 1h após o treino</span></div>
+      </div>
+      <div class="c_nc" style="grid-column:1/-1">
+        <div class="c_nt">Jantar</div><div class="c_nk">~450</div>
+        <div class="c_nd">2 ovos · arroz · 1 concha de feijão · salada<br><span style="color:var(--acc-fg);font-weight:700">~20g proteína</span></div>
       </div>
     </div>
-    <div class="c_aviso"><strong>Regras:</strong> creatina 3–5g todo dia, inclusive no descanso. Se tiver whey, 1 dose substitui o frango do jantar. Pese toda segunda: subir 0,3–0,5 kg por semana é o ritmo certo. Não subiu em 2 semanas → some 1 concha de arroz por dia. Sábado (corrida) e quinta (futebol): +1 banana e +1 concha de arroz.</div>
+    <div class="c_aviso"><strong>Regras:</strong> creatina 3–5g todo dia, inclusive no descanso. Na sexta (descanso), tome o shake à tarde mesmo sem treino. Pese toda segunda: subir 0,3–0,5 kg por semana é o ritmo certo. Não subiu em 2 semanas → some 1 concha de arroz por dia. Sábado (corrida) e quinta (futebol): +1 banana e +1 concha de arroz.</div>
   </div>
 </div><!-- /hpage-cal -->
 
@@ -978,7 +978,7 @@ const XW={
   A:{dow:1,nome:'Pernas + Ombro + Braços',cor:'var(--orange)',ex:['agach','leg','flexora','elev','ralt','corda'],nota:'Pernas na segunda = recuperadas até o futebol de quinta. Fecha com braço leve.'},
   B:{dow:2,nome:'Peito + Tríceps',cor:'var(--blue)',ex:['supino','incl','testa','paralela','tpolia','rscott'],nota:'Tríceps é 2/3 do braço: este é o dia que mais aumenta a medida.'},
   C:{dow:3,nome:'Costas + Bíceps',cor:'var(--green)',ex:['puxada','remada','rdireta','rincl','martelo','frances'],nota:'Costas primeiro, bíceps com tudo depois.'},
-  D:{dow:4,nome:'BRAÇOS',cor:'var(--accent)',ex:['supfech','rdireta','corda','rconc','frances','martelo','punho'],nota:'Dia só de braço. Alterna tríceps e bíceps. Treine cedo: à noite tem futebol.'},
+  D:{dow:4,nome:'BRAÇOS',cor:'var(--accent)',ex:['supfech','rdireta','corda','rconc','frances','martelo'],nota:'Faça em <strong>bi-sets</strong>: 1º+2º, 3º+4º, 5º+6º sem descanso entre os dois, 75s depois do par. Treine cedo: à noite tem futebol.'},
 };
 const XWEEK=[
   {k:'A',ico:'🦵',t:'Pernas'},{k:'B',ico:'💪',t:'Peito+Tri'},{k:'C',ico:'💪',t:'Costas+Bi'},
@@ -1080,6 +1080,9 @@ function cBuildChips(){
 }
 function cSelectDia(k){cDiaAtivo=k;cBuildChips();cBuildTreino(k);}
 
+function xMin(w){ // aquecimento 8 min + ~2,5 min por série (pesado) / ~2 min (braço); bi-set ~1,6 min
+  return Math.round(8+w.ex.reduce((t,id)=>{const X=XLIB[id];const per=w.dow===4?1.6:(X.arm?2:2.5);return t+X.sets*per;},0));
+}
 function cBuildTreino(k){
   const w=XW[k];
   const dow=new Date().getDay();
@@ -1089,6 +1092,7 @@ function cBuildTreino(k){
     <div style="font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:${w.cor}">${C_DIAS_SEMANA[w.dow]}${w.dow===dow?' · hoje':''}</div>
     <h3 style="font-size:1.5rem">${w.nome}</h3>
     <p style="font-size:13px;color:var(--fg2)">${w.nota}</p>
+    <p style="font-size:12px;color:var(--acc-fg);margin-top:6px;font-weight:600">⏱ ~${xMin(w)} min · ${w.ex.reduce((t,id)=>t+XLIB[id].sets,0)} séries</p>
     ${savedToday?'<p style="font-size:12px;color:var(--green);margin-top:6px">✓ Já registrado hoje. Salvar de novo substitui.</p>':''}
   </div>`;
   w.ex.forEach(id=>{h+=xExCard(id,savedToday);});
@@ -1236,13 +1240,13 @@ function xRenderNutri(){
   const p=parseFloat((inp.value||'').replace(',','.'));
   const el=document.getElementById('x-nut-out');
   if(!(p>35&&p<200)){el.innerHTML='<p style="font-size:13px;color:var(--fg2)">Digite seu peso para calcular suas metas.</p>';return;}
-  const kcal=Math.round(p*40/50)*50, prot=Math.round(p*2), base=2650, dif=kcal-base;
+  const kcal=Math.round(p*40/50)*50, prot=Math.round(p*2), base=2900, dif=kcal-base;
   el.innerHTML=`<div class="c_mbar" style="margin-top:0">
       <div class="c_mp">Calorias<span style="color:var(--acc-fg)">${kcal}</span></div>
       <div class="c_mp">Proteína<span style="color:var(--acc-fg)">${prot}g</span></div>
       <div class="c_mp">Ovos/dia<span>6</span></div>
     </div>
-    <p style="font-size:13px;color:var(--fg2);margin-top:8px">O cardápio abaixo dá ~${base} kcal e ~160g de proteína. ${
+    <p style="font-size:13px;color:var(--fg2);margin-top:8px">O cardápio abaixo dá ~${base} kcal e ~175g de proteína. ${
       Math.abs(dif)<150?'Já está na sua meta.':dif>0?`Faltam ~${dif} kcal: some ${Math.ceil(dif/130)} concha(s) de arroz ou ${Math.ceil(dif/90)} colher(es) de pasta de amendoim por dia.`:`Passa ~${-dif} kcal: tire ${Math.ceil(-dif/130)} concha(s) de arroz por dia.`}</p>`;
 }
 function xSaveNutPeso(){const p=parseFloat(document.getElementById('x-nut-peso').value.replace(',','.'));if(p>35&&p<200)ls.set('gx_peso',p);xRenderNutri();}
