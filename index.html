@@ -376,10 +376,7 @@ nav::-webkit-scrollbar{display:none;}
     <div class="cbox" id="cb-oracao"></div><span class="clabel">30 min de oração</span>
   </div>
   <div class="check-row" id="cr-biblia" onclick="toggleCheck('biblia')">
-    <div class="cbox" id="cb-biblia"></div><span class="clabel">30 min de leitura bíblica</span>
-  </div>
-  <div class="check-row" id="cr-leitura" onclick="toggleCheck('leitura')">
-    <div class="cbox" id="cb-leitura"></div><span class="clabel">30 min de leitura (livro)</span>
+    <div class="cbox" id="cb-biblia"></div><span class="clabel">10 capítulos da Bíblia</span>
   </div>
 
   <div class="check-row" id="cr-redacao" onclick="toggleCheck('redacao')">
@@ -666,7 +663,7 @@ document.getElementById('today-lbl').textContent =
 // ═══════════════════════════════════════════════════════
 // CHECKLIST
 // ═══════════════════════════════════════════════════════
-const CHECKS = ['oracao','biblia','leitura','redacao','trava'];
+const CHECKS = ['oracao','biblia','redacao','trava'];
 let checkData = ls.get('hub_checks',{});
 
 function getCheckToday(){ return checkData[todayKey()]||{}; }
