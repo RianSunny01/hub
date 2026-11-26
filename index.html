@@ -340,6 +340,11 @@ nav::-webkit-scrollbar{display:none;}
 .x_inp{background:var(--bg3);border:1px solid var(--border);border-radius:8px;padding:8px;color:var(--fg);font-family:'DM Mono',monospace;font-size:16px;width:64px;text-align:center;}
 .x_inp:focus{outline:2px solid var(--accent);border-color:var(--accent);}
 .x_inp::placeholder{color:var(--fg2);opacity:.6;}
+.x_srows{display:flex;flex-direction:column;gap:6px;margin-top:8px;}
+.x_srow{display:flex;align-items:center;gap:6px;}
+.x_sn{font-size:12px;font-weight:700;color:var(--fg2);width:24px;}
+.x_su{font-size:12px;color:var(--fg2);}
+.x_srow .x_inp{width:72px;}
 .x_msg{background:var(--bg2);border:1px solid var(--green);border-radius:10px;padding:12px 14px;margin-top:10px;font-size:13px;line-height:1.7;}
 .x_msg.warn{border-color:var(--red);}
 .x_spark{width:100%;height:56px;margin-top:8px;display:block;}
@@ -508,7 +513,7 @@ nav::-webkit-scrollbar{display:none;}
   <!-- TREINO -->
   <div id="cs-treinos" class="c_section">
     <h2 style="margin-bottom:4px">Treino</h2>
-    <p style="color:var(--fg2);font-size:13px;margin-bottom:12px" id="x-treino-sub">Registre as reps de cada série e salve.</p>
+    <p style="color:var(--fg2);font-size:13px;margin-bottom:12px" id="x-treino-sub">Registre o peso e as reps de cada série e salve.</p>
     <div class="c_chips" id="c-chips"></div>
     <div id="c-treino-container"></div>
   </div>
@@ -1098,26 +1103,33 @@ function cBuildTreino(k){
   document.getElementById('c-treino-container').innerHTML=h;
 }
 
+const xKs=x=>x?(Array.isArray(x.k)?x.k:x.r.map(()=>x.kg)):[];
+const xSetsTxt=x=>{const k=xKs(x);return x.r.map((r,i)=>`${fmtKg(k[i]||0)}×${r}`).join(' · ');};
+
 function xExCard(id,saved){
   const X=XLIB[id];
   const last=xLastEntry(id,todayKey());
   const cur=saved&&saved.e[id];
   const sug=xLoad[id];
-  const lastTxt=last?`Última (${dFmt(last.date)}): ${fmtKg(last.kg)}kg × ${last.r.join(' · ')}`:'Primeira vez: escolha um peso que você aguente com boa execução';
-  const kgVal=cur?cur.kg:'';
-  const kgPh=sug!=null?fmtKg(sug):(last?fmtKg(last.kg):'kg');
-  let sets='';
+  const lk=xKs(last), ck=xKs(cur);
+  const lastTxt=last?`Última (${dFmt(last.date)}): ${xSetsTxt(last)}`:'Primeira vez: escolha um peso que você aguente com boa execução';
+  let rows='';
   for(let s=0;s<X.sets;s++){
-    const v=cur&&cur.r[s]!=null?cur.r[s]:'';
-    const ph=last&&last.r[s]!=null?last.r[s]:'';
-    sets+=`<label class="x_set">S${s+1}<input type="number" inputmode="numeric" min="0" max="99" class="x_inp" data-ex="${id}" data-s="${s}" value="${v}" placeholder="${ph}"></label>`;
+    const kv=cur&&ck[s]!=null?fmtKg(ck[s]):'';
+    const rv=cur&&cur.r[s]!=null?cur.r[s]:'';
+    const kph=lk[s]!=null?fmtKg(lk[s]):(s===0?'kg':'');
+    const rph=last&&last.r[s]!=null?last.r[s]:'reps';
+    rows+=`<div class="x_srow"><span class="x_sn">S${s+1}</span>
+      <input type="text" inputmode="decimal" class="x_inp" data-kg="${id}" data-s="${s}" value="${kv}" placeholder="${kph}" aria-label="kg série ${s+1}"><span class="x_su">kg ×</span>
+      <input type="number" inputmode="numeric" min="0" max="99" class="x_inp" data-ex="${id}" data-s="${s}" value="${rv}" placeholder="${rph}" aria-label="reps série ${s+1}"><span class="x_su">reps</span></div>`;
   }
   return `<div class="x_ex"${X.arm?' style="border-color:var(--accent)"':''}>
     <div class="x_exhd"><span class="x_exnome">${X.arm?'💪 ':''}${X.nome}</span><span class="c_exser">${X.sets} × ${X.min}–${X.max}</span></div>
     <div class="c_exobs">${X.dica} <span style="color:var(--fg2)">· ${X.musc}</span></div>
-    ${sug!=null&&last&&sug>last.kg?`<div class="x_lvname" style="margin-top:6px">⬆️ Hoje: suba para ${fmtKg(sug)} kg</div>`:''}
+    ${sug!=null&&last&&sug>Math.max(...lk)?`<div class="x_lvname" style="margin-top:6px">⬆️ Hoje: suba para ${fmtKg(sug)} kg</div>`:''}
     <div class="x_last">${lastTxt}</div>
-    <div class="x_sets"><label class="x_set">Kg<input type="number" inputmode="decimal" step="0.5" min="0" class="x_inp" style="width:72px" data-kg="${id}" value="${kgVal}" placeholder="${kgPh}"></label>${sets}</div>
+    <div class="x_srows">${rows}</div>
+    <p style="font-size:11px;color:var(--fg2);margin-top:6px">Kg vazio = repete o peso da série anterior.</p>
   </div>`;
 }
 
@@ -1126,18 +1138,23 @@ function xSaveTreino(k){
   document.querySelectorAll('#c-treino-container input[data-ex]').forEach(inp=>{
     const id=inp.dataset.ex, s=+inp.dataset.s, v=inp.value.trim();
     if(v==='')return;
-    if(!e[id])e[id]={kg:0,r:[]};
+    if(!e[id])e[id]={k:[],r:[]};
     e[id].r[s]=Math.max(0,Math.round(+v));
   });
-  document.querySelectorAll('#c-treino-container input[data-kg]').forEach(inp=>{
-    const id=inp.dataset.kg;
-    if(!e[id])return;
-    let v=inp.value.trim().replace(',','.');
-    if(v===''){v=inp.placeholder.replace(',','.');}
-    const n=parseFloat(v);
-    e[id].kg=isNaN(n)?0:Math.max(0,n);
+  Object.entries(e).forEach(([id,x])=>{
+    let prevKg=0;
+    for(let s=0;s<x.r.length;s++){
+      const inp=document.querySelector(`#c-treino-container input[data-kg="${id}"][data-s="${s}"]`);
+      let v=inp?inp.value.trim().replace(',','.'):'';
+      let n=parseFloat(v);
+      if(isNaN(n)){ // vazio: série anterior, senão placeholder (último treino)
+        if(s>0)n=prevKg; else {n=parseFloat((inp&&inp.placeholder||'').replace(',','.'));if(isNaN(n))n=0;}
+      }
+      x.k[s]=Math.max(0,n);prevKg=x.k[s];
+      if(x.r[s]==null)x.r[s]=0;
+    }
+    x.kg=Math.max(...x.k);
   });
-  Object.values(e).forEach(x=>{x.r=Array.from(x.r,v=>v==null?0:v);});
   const msgEl=document.getElementById('x-save-msg');
   if(!Object.keys(e).length){msgEl.innerHTML='<div class="x_msg warn">Preencha pelo menos uma série.</div>';return;}
 
@@ -1146,7 +1163,7 @@ function xSaveTreino(k){
     const X=XLIB[id];
     const prev=xLastEntry(id,today);
     const full=x.r.length>=X.sets&&x.r.slice(0,X.sets).every(v=>v>=X.max);
-    const weak=x.r[0]!=null&&x.r[0]<X.min;
+    const weak=x.r[0]<X.min;
     if(full){
       xLoad[id]=x.kg+X.inc;
       msgs.push(`⬆️ <strong>${X.nome}</strong>: bateu ${X.max} em todas → próximo treino <strong>${fmtKg(x.kg+X.inc)} kg</strong>`);
@@ -1154,7 +1171,7 @@ function xSaveTreino(k){
       xLoad[id]=x.kg;
       if(weak)msgs.push(`⚠️ ${X.nome}: abaixo de ${X.min} reps. Se repetir, tire ${fmtKg(X.inc)} kg.`);
       else if(prev){
-        const vol=x.kg*x.r.reduce((a,b)=>a+b,0), pv=prev.kg*prev.r.reduce((a,b)=>a+b,0);
+        const vol=x.r.reduce((a,r,i)=>a+r*x.k[i],0), pk=xKs(prev), pv=prev.r.reduce((a,r,i)=>a+r*(pk[i]||0),0);
         if(vol>pv)msgs.push(`📈 ${X.nome}: volume ${Math.round(pv)} → <strong>${Math.round(vol)}</strong> kg`);
       }
     }
@@ -1192,12 +1209,12 @@ function xRenderProg(){
     const X=XLIB[id];
     const hist=xLogs.filter(L=>L.e[id]).map(L=>({date:L.date,...L.e[id]})).slice(-12);
     if(!hist.length)return;
-    const vals=hist.map(x=>x.kg);
+    const vals=hist.map(x=>x.kg||Math.max(...xKs(x)));
     const marks=hist.map((x,i)=>i>0&&x.kg>hist[i-1].kg);
     const lastE=hist[hist.length-1];
     h+=`<div class="x_ex"${X.arm?' style="border-color:var(--accent)"':''}>
       <div class="x_exhd"><span class="x_exnome">${X.arm?'💪 ':''}${X.nome}</span><span style="font-size:11px;color:var(--fg2)">${hist.length} sessões</span></div>
-      <div style="font-size:12px;color:var(--fg2)">Atual: ${fmtKg(lastE.kg)} kg × ${lastE.r.join(' · ')} · início: ${fmtKg(hist[0].kg)} kg</div>
+      <div style="font-size:12px;color:var(--fg2)">Atual: ${xSetsTxt(lastE)} · carga máx. no início: ${fmtKg(hist[0].kg)} kg</div>
       ${xSpark(vals,marks)}
     </div>`;
   });
