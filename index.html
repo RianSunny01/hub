@@ -463,6 +463,8 @@ nav::-webkit-scrollbar{display:none;}
         <input type="text" inputmode="decimal" id="fx-price" class="x_inp" style="width:100%" placeholder="0" onchange="fxSetPrice(this.value)">
       </label>
     </div>
+    <div class="x_lbl" style="margin:12px 0 6px">Duração da quadra</div>
+    <div style="display:flex;gap:8px;flex-wrap:wrap" id="fx-dur"></div>
     <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:10px">
       <input type="date" id="fx-newdate" class="x_inp" style="width:auto">
       <button class="accent-btn" onclick="fxNew()">＋ Novo jogo</button>
@@ -1390,13 +1392,15 @@ function fxNew(){
   const d=document.getElementById('fx-newdate').value||fxNextThu();
   if(!fxGames[d]){
     const ks=Object.keys(fxGames).sort();const last=ks.length?fxGames[ks[ks.length-1]]:null;
-    fxGames[d]={price:last?last.price:0,pl:last?last.pl.map(p=>({n:p.n,f:null,pay:''})):[]};
+    fxGames[d]={price:last?last.price:0,dur:last&&last.dur||90,pl:last?last.pl.map(p=>({n:p.n,f:null,pay:''})):[]};
     fxSave();
   }
   fxCur=d;fxRender();
 }
 function fxPick(d){fxCur=d;fxDelArm=false;fxRender();}
 function fxSetPrice(v){const n=parseFloat(String(v).replace(',','.'));fxGames[fxCur].price=isNaN(n)?0:n;fxSave();fxRender();}
+const FX_DUR={90:{t:'1h30',v:180},120:{t:'2h',v:240}}; // R$120/hora
+function fxSetDur(d){fxGames[fxCur].dur=d;fxSave();fxRender();}
 function fxSetF(i,v){const p=fxGames[fxCur].pl[i];p.f=p.f===v?null:v;fxSave();fxRender();}
 function fxSetPay(i,v){const p=fxGames[fxCur].pl[i];p.pay=p.pay===v?'':v;if(p.pay&&p.f===null)p.f=true;fxSave();fxRender();}
 function fxDel(i){fxGames[fxCur].pl.splice(i,1);fxSave();fxRender();}
@@ -1418,16 +1422,24 @@ function fxRender(){
   document.getElementById('fx-sel').innerHTML=Object.keys(fxGames).sort().reverse().map(k=>`<option value="${k}"${k===fxCur?' selected':''}>${dFmt(k,{weekday:'short',day:'2-digit',month:'2-digit',year:'2-digit'})}</option>`).join('');
   document.getElementById('fx-price').value=g.price?String(g.price).replace('.',','):'';
   if(!document.getElementById('fx-newdate').value)document.getElementById('fx-newdate').value=fxNextThu();
+  const dur=g.dur||90, custo=FX_DUR[dur].v;
+  document.getElementById('fx-dur').innerHTML=Object.entries(FX_DUR).map(([k,o])=>`<button class="fx_b${+k===dur?' on a':''}" onclick="fxSetDur(${k})">${o.t} · ${fxMoney(o.v)}</button>`).join('');
   const db=document.getElementById('fx-del');if(!fxDelArm){db.textContent='🗑 Apagar este jogo';db.style.color='';}
   const tot=g.pl.length, foram=g.pl.filter(p=>p.f===true).length, falt=g.pl.filter(p=>p.f===false).length;
   const pagos=g.pl.filter(p=>p.pay).length, pend=g.pl.filter(p=>p.f!==false&&!p.pay).length;
   const by=k=>g.pl.filter(p=>p.pay===k).length;
+  const arrec=pagos*(g.price||0), cob=tot-falt, porPessoa=cob?custo/cob:0, saldo=arrec-custo;
   document.getElementById('fx-stats').innerHTML=
     `<div class="c_stat"><div class="c_num">${foram}<span style="font-size:1rem;color:var(--fg2)">/${tot}</span></div><div class="c_lbl">Foram</div></div>
      <div class="c_stat"><div class="c_num">${pagos}</div><div class="c_lbl">Pagaram</div></div>
-     <div class="c_stat"><div class="c_num" style="color:${pend?'var(--red)':'var(--green)'}!important">${pend}</div><div class="c_lbl">Devendo</div></div>`+
-    (g.price?`<div class="c_stat" style="grid-column:1/-1;text-align:left;font-size:13px;color:var(--fg2)">Arrecadado: <strong style="color:var(--fg)">${fxMoney(pagos*g.price)}</strong> de ${fxMoney((tot-falt)*g.price)} · Pix ${by('pix')} · Cartão ${by('cartao')} · Dinheiro ${by('dinheiro')}${falt?` · ${falt} faltou`:''}</div>`:
-     `<div class="c_stat" style="grid-column:1/-1;text-align:left;font-size:13px;color:var(--fg2)">Pix ${by('pix')} · Cartão ${by('cartao')} · Dinheiro ${by('dinheiro')}${falt?` · ${falt} faltou`:''}</div>`);
+     <div class="c_stat"><div class="c_num" style="color:${pend?'var(--red)':'var(--green)'}!important">${pend}</div><div class="c_lbl">Devendo</div></div>
+     <div class="c_stat" style="grid-column:1/-1;text-align:left;font-size:13px;color:var(--fg2);line-height:1.7">
+       Quadra ${FX_DUR[dur].t}: <strong style="color:var(--fg)">${fxMoney(custo)}</strong><br>
+       Arrecadado: <strong style="color:var(--fg)">${fxMoney(arrec)}</strong>${g.price?` de ${fxMoney(cob*g.price)} esperados`:''}<br>
+       ${g.price?`Saldo: <strong style="color:${saldo>=0?'var(--green)':'var(--red)'}">${saldo>=0?'+':'−'}${fxMoney(Math.abs(saldo))}</strong> ${saldo>=0?'(quadra paga)':'(falta para pagar a quadra)'}<br>`:''}
+       ${cob?`Para fechar a quadra com ${cob} pagantes: ${fxMoney(porPessoa)} por pessoa<br>`:''}
+       Pix ${by('pix')} · Cartão ${by('cartao')} · Dinheiro ${by('dinheiro')}${falt?` · ${falt} faltou`:''}
+     </div>`;
   const F={todos:'Todos',devendo:'Devendo',pagos:'Pagaram',faltou:'Faltaram'};
   document.getElementById('fx-filter').innerHTML=Object.entries(F).map(([k,v])=>`<button class="ftab${fxFilt===k?' active':''}" onclick="fxSetFilt('${k}')">${v}</button>`).join('');
   const show=p=>fxFilt==='todos'||(fxFilt==='devendo'&&p.f!==false&&!p.pay)||(fxFilt==='pagos'&&!!p.pay)||(fxFilt==='faltou'&&p.f===false);
