@@ -1342,17 +1342,43 @@ function fxCleanName(l){
   return s.replace(/\s+/g,' ').trim();
 }
 function fxImport(){
-  const g=fxGames[fxCur];const lines=document.getElementById('fx-list').value.split(/\r?\n/);
-  let add=0,dup=0;
-  lines.forEach(l=>{
-    if(!/[A-Za-zÀ-ÿ]/.test(l))return;
-    const n=fxCleanName(l);if(n.length<2||n.length>40)return;
-    if(/^(lista|futebol|fut|jogo|quinta|valor|pix|chave|horário|horario|local|dia|data)\b/i.test(n)||/:\s*\S/.test(n))return;
+  const raw=document.getElementById('fx-list').value;
+  const msg=document.getElementById('fx-msg');
+  // data da lista ex.: [26/11] → seleciona/cria esse jogo
+  const dm=raw.match(/\[?\b(\d{1,2})\/(\d{1,2})(?:\/(\d{2,4}))?\b\]?/);
+  if(dm){
+    const t=new Date();let y=dm[3]?(+dm[3]<100?2000+(+dm[3]):+dm[3]):t.getFullYear();
+    const mo=+dm[2],da=+dm[1];
+    if(mo>=1&&mo<=12&&da>=1&&da<=31){
+      if(!dm[3]&&mo===1&&t.getMonth()===11)y++;
+      const k=`${y}-${String(mo).padStart(2,'0')}-${String(da).padStart(2,'0')}`;
+      if(!fxGames[k]){
+        const ks=Object.keys(fxGames).sort();const emptyOnly=ks.length===1&&!fxGames[ks[0]].pl.length;
+        if(emptyOnly)delete fxGames[ks[0]];
+        fxGames[k]={price:0,pl:[]};
+      }
+      fxCur=k;
+    }
+  }
+  const g=fxGames[fxCur];
+  const vm=raw.match(/valor[^\d]*(\d+(?:[.,]\d{1,2})?)/i);
+  if(vm)g.price=parseFloat(vm[1].replace(',','.'));
+  let add=0,dup=0,gk=false;
+  raw.split(/\r?\n/).forEach(l=>{
+    const t=l.replace(/[*_~]/g,'').trim();
+    if(/goleiro/i.test(t)&&!/^\d/.test(t)){gk=true;return;}
+    if(/^[━─—=\-_]{3,}/.test(t)){gk=false;return;}
+    const m=t.match(/^(\d{1,2})\s*[.\-–—)\]:º°]?\s*(.*)$/); // só linhas numeradas
+    if(!m)return;
+    let n=fxCleanName(m[2]);
+    if(!n||!/[A-Za-zÀ-ÿ]/.test(n)||n.length>40)return;
+    n=n.charAt(0).toUpperCase()+n.slice(1);
+    if(gk&&!/goleiro/i.test(n))n+=' (goleiro)';
     if(g.pl.some(p=>p.n.toLowerCase()===n.toLowerCase())){dup++;return;}
     g.pl.push({n,f:null,pay:''});add++;
   });
   fxSave();document.getElementById('fx-list').value='';
-  document.getElementById('fx-msg').textContent=add?`✅ ${add} nome(s) adicionados${dup?` · ${dup} já estavam`:''}.`:'Nenhum nome novo encontrado.';
+  msg.textContent=add?`✅ ${add} nome(s) adicionados no jogo de ${dFmt(fxCur,{day:'2-digit',month:'2-digit'})}${vm?` · valor R$ ${String(g.price).replace('.',',')}`:''}${dup?` · ${dup} já estavam`:''}.`:'Nenhum nome novo. A lista precisa ter os nomes numerados (1. Nome).';
   fxRender();
 }
 function fxAddOne(){
