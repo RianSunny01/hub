@@ -340,6 +340,21 @@ nav::-webkit-scrollbar{display:none;}
 .x_inp{background:var(--bg3);border:1px solid var(--border);border-radius:8px;padding:8px;color:var(--fg);font-family:'DM Mono',monospace;font-size:16px;width:64px;text-align:center;}
 .x_inp:focus{outline:2px solid var(--accent);border-color:var(--accent);}
 .x_inp::placeholder{color:var(--fg2);opacity:.6;}
+.fx_p{background:var(--bg2);border:1px solid var(--border);border-left:4px solid var(--red);border-radius:10px;padding:12px;margin-bottom:8px;}
+.fx_p.paid{border-left-color:var(--green);}
+.fx_p.miss{border-left-color:var(--fg2);opacity:.6;}
+.fx_top{display:flex;align-items:center;gap:8px;}
+.fx_n{font-weight:700;font-size:15px;flex:1;min-width:0;overflow-wrap:anywhere;}
+.fx_badge{font-size:11px;font-weight:700;padding:2px 8px;border-radius:10px;background:var(--bg3);color:var(--fg2);}
+.fx_badge.ok{background:var(--green);color:#000;}
+.fx_badge.due{background:var(--red);color:#fff;}
+.fx_x{background:none;border:none;color:var(--fg2);font-size:14px;cursor:pointer;padding:4px;}
+.fx_row{display:flex;gap:6px;flex-wrap:wrap;margin-top:8px;align-items:center;}
+.fx_b{background:var(--bg3);border:1px solid var(--border);color:var(--fg2);border-radius:8px;padding:7px 10px;font-size:13px;font-weight:600;cursor:pointer;font-family:inherit;}
+.fx_b.on.g{background:var(--green);border-color:var(--green);color:#000;}
+.fx_b.on.r{background:var(--red);border-color:var(--red);color:#fff;}
+.fx_b.on.a{background:var(--accent);border-color:var(--accent);color:#000;}
+.fx_sep{width:1px;height:22px;background:var(--border);margin:0 2px;}
 .x_srows{display:flex;flex-direction:column;gap:6px;margin-top:8px;}
 .x_srow{display:flex;align-items:center;gap:6px;}
 .x_sn{font-size:12px;font-weight:700;color:var(--fg2);width:24px;}
@@ -365,7 +380,7 @@ nav::-webkit-scrollbar{display:none;}
 <!-- ══ TOP NAV ══ -->
 <nav>
   <button class="htab active" onclick="showHub('checklist',this)">☑️ Checklist</button>
-  <button class="htab" onclick="showHub('estudo',this)">⏱ Estudo</button>
+  <button class="htab" onclick="showHub('fut',this)">⚽ Futebol</button>
   <button class="htab" onclick="showHub('cal',this)">💪 Academia</button>
 </nav>
 
@@ -434,28 +449,48 @@ nav::-webkit-scrollbar{display:none;}
   </div>
 </div>
 
-<!-- ══════════════════ ESTUDO ══════════════════ -->
-<div id="hpage-estudo" class="hpage">
-  <h2 style="margin-bottom:4px">Cronômetro</h2>
-  <p style="color:var(--fg2);font-size:13px;margin-bottom:0">Cada sessão é salva automaticamente ao parar</p>
+<!-- ══════════════════ FUTEBOL ══════════════════ -->
+<div id="hpage-fut" class="hpage">
+  <h2 style="margin-bottom:4px">Futebol</h2>
+  <p style="color:var(--fg2);font-size:13px;margin-bottom:12px">Presença e pagamento por jogo.</p>
 
-  <div class="timer-display" id="timer-disp">00:00:00</div>
-  <div class="timer-btns">
-    <button class="tbtn tbtn-start" id="btn-ini" onclick="tStart()">▶ Iniciar</button>
-    <button class="tbtn tbtn-pause" id="btn-pau" onclick="tPause()" disabled>⏸ Pausar</button>
-    <button class="tbtn tbtn-stop" id="btn-par" onclick="tStop()" disabled>■ Salvar</button>
+  <div class="x_card">
+    <div class="x_row" style="align-items:flex-end">
+      <label class="x_field">Jogo
+        <select id="fx-sel" class="x_inp" style="width:100%;text-align:left" onchange="fxPick(this.value)"></select>
+      </label>
+      <label class="x_field" style="max-width:120px">Valor (R$)
+        <input type="text" inputmode="decimal" id="fx-price" class="x_inp" style="width:100%" placeholder="0" onchange="fxSetPrice(this.value)">
+      </label>
+    </div>
+    <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:10px">
+      <input type="date" id="fx-newdate" class="x_inp" style="width:auto">
+      <button class="accent-btn" onclick="fxNew()">＋ Novo jogo</button>
+    </div>
   </div>
 
-  <div class="filter-row">
-    <button class="ftab active" id="ft-all" onclick="setFilter('all',this)">Tudo</button>
-    <button class="ftab" id="ft-today" onclick="setFilter('today',this)">Hoje</button>
-    <button class="ftab" id="ft-week" onclick="setFilter('week',this)">Semana</button>
+  <div class="c_stats" id="fx-stats"></div>
+
+  <div class="x_card">
+    <div class="x_lbl">Colar lista do WhatsApp</div>
+    <textarea id="fx-list" rows="5" placeholder="1- João&#10;2- Pedro ✅&#10;3. Lucas" style="width:100%;background:var(--bg3);color:var(--fg);border:1px solid var(--border);border-radius:8px;padding:8px;font-size:14px;font-family:inherit"></textarea>
+    <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:8px">
+      <button class="accent-btn" onclick="fxImport()">📋 Pegar nomes</button>
+      <input type="text" id="fx-one" class="x_inp" style="width:140px;text-align:left;font-size:14px" placeholder="ou 1 nome">
+      <button class="ghost-btn" onclick="fxAddOne()">＋</button>
+    </div>
+    <div id="fx-msg" style="font-size:13px;margin-top:6px"></div>
   </div>
-  <div class="study-total">
-    <span class="stlbl" id="filter-lbl">Total acumulado</span>
-    <span class="stval" id="total-val">0h 0min</span>
+
+  <div class="filter-row" id="fx-filter" style="flex-wrap:wrap"></div>
+  <div id="fx-players"></div>
+
+  <div class="x_card" style="margin-top:12px">
+    <div class="x_lbl">Cobrança</div>
+    <button class="accent-btn" onclick="fxCopyPend()">📤 Copiar lista de quem não pagou</button>
+    <div id="fx-cmsg" style="font-size:13px;margin-top:6px"></div>
   </div>
-  <div id="session-list"></div>
+  <button class="ghost-btn" style="margin-top:4px" onclick="fxDelGame()" id="fx-del">🗑 Apagar este jogo</button>
 </div>
 
 <!-- ══════════════════ CALISTENIA ══════════════════ -->
@@ -775,156 +810,6 @@ function undoCalTreino(){
   if(calCount.total===0) return;
   calCount.total--; calCount.days.pop();
   ls.set('hub_calcount',calCount); renderCalCount();
-}
-
-// ═══════════════════════════════════════════════════════
-// STUDY TIMER — resiliente a recarregamento e background
-// ═══════════════════════════════════════════════════════
-let _tInterval=null, _tRunning=false;
-let _tElapsed=0; // ms acumulados antes do start atual
-let _tStartTs=0; // timestamp do último start
-let sessions=ls.get('hub_sessions',[]);
-let curFilter='all';
-
-// persiste estado do timer no localStorage
-function tSaveState(){
-  try{ localStorage.setItem('hub_timer_state', JSON.stringify({
-    running: _tRunning,
-    startTs: _tStartTs,
-    elapsed: _tElapsed
-  })); }catch(e){}
-}
-
-// apaga estado salvo
-function tClearState(){ try{ localStorage.removeItem('hub_timer_state'); }catch(e){} }
-
-// atualiza display e persiste
-function tTick(){
-  const now=Date.now();
-  const total = _tElapsed + (now - _tStartTs);
-  document.getElementById('timer-disp').textContent=fmtTimer(total);
-  tSaveState();
-}
-
-function tUpdateButtons(running){
-  document.getElementById('btn-ini').disabled=running;
-  document.getElementById('btn-pau').disabled=!running;
-  document.getElementById('btn-par').disabled=!running && _tElapsed===0;
-}
-
-function tStart(){
-  if(_tRunning) return;
-  _tRunning=true;
-  _tStartTs=Date.now();
-  _tInterval=setInterval(tTick,500);
-  tUpdateButtons(true);
-  tSaveState();
-  tRequestWakeLock();
-}
-
-function tPause(){
-  if(_tRunning){
-    // pausar: acumula o tempo rodado
-    _tElapsed += Date.now()-_tStartTs;
-    clearInterval(_tInterval); _tRunning=false;
-    document.getElementById('timer-disp').textContent=fmtTimer(_tElapsed);
-    document.getElementById('btn-pau').textContent='▶ Continuar';
-    document.getElementById('btn-par').disabled=false;
-    tSaveState();
-  } else {
-    // retomar
-    _tRunning=true;
-    _tStartTs=Date.now();
-    _tInterval=setInterval(tTick,500);
-    document.getElementById('btn-pau').textContent='⏸ Pausar';
-    tUpdateButtons(true);
-    tSaveState();
-    tRequestWakeLock();
-  }
-}
-
-function tStop(){
-  const total=_tElapsed+(_tRunning?Date.now()-_tStartTs:0);
-  clearInterval(_tInterval); _tRunning=false;
-  if(total>10000){
-    sessions.push({date:todayKey(),ms:total});
-    ls.set('hub_sessions',sessions);
-  }
-  _tElapsed=0; _tStartTs=0;
-  document.getElementById('timer-disp').textContent='00:00:00';
-  document.getElementById('btn-pau').textContent='⏸ Pausar';
-  tUpdateButtons(false);
-  document.getElementById('btn-par').disabled=true;
-  tClearState();
-  renderSessions();
-}
-
-// ── Restaurar timer se página foi recarregada com timer ativo ──
-(function tRestore(){
-  try{
-    const s=JSON.parse(localStorage.getItem('hub_timer_state')||'null');
-    if(!s) return;
-    _tElapsed=s.elapsed||0;
-    if(s.running && s.startTs){
-      // recalcula tempo passado enquanto página estava fechada
-      _tElapsed += Date.now()-s.startTs;
-      _tStartTs=Date.now();
-      _tRunning=true;
-      _tInterval=setInterval(tTick,500);
-      tUpdateButtons(true);
-      document.getElementById('timer-disp').textContent=fmtTimer(_tElapsed);
-    } else if(_tElapsed>0){
-      // estava pausado
-      document.getElementById('timer-disp').textContent=fmtTimer(_tElapsed);
-      document.getElementById('btn-pau').textContent='▶ Continuar';
-      document.getElementById('btn-ini').disabled=true;
-      document.getElementById('btn-pau').disabled=false;
-      document.getElementById('btn-par').disabled=false;
-    }
-  }catch(e){}
-})();
-
-// ── Quando volta do background, sincroniza tempo ──
-document.addEventListener('visibilitychange',()=>{
-  if(!document.hidden && _tRunning){
-    // recalcula: o setInterval pode ter atrasado em background
-    clearInterval(_tInterval);
-    _tInterval=setInterval(tTick,500);
-    tTick();
-  }
-});
-
-function setFilter(f,el){
-  curFilter=f;
-  document.querySelectorAll('.ftab').forEach(t=>t.classList.remove('active'));
-  el.classList.add('active');
-  renderSessions();
-}
-
-function filterSessions(){
-  const today=todayKey();
-  const weekAgo=new Date(); weekAgo.setDate(weekAgo.getDate()-7);
-  const wk=`${weekAgo.getFullYear()}-${String(weekAgo.getMonth()+1).padStart(2,'0')}-${String(weekAgo.getDate()).padStart(2,'0')}`;
-  if(curFilter==='today') return sessions.filter(s=>s.date===today);
-  if(curFilter==='week') return sessions.filter(s=>s.date>=wk);
-  return sessions;
-}
-
-function renderSessions(){
-  const filtered=filterSessions();
-  const total=filtered.reduce((a,s)=>a+s.ms,0);
-  const lbl={all:'Total acumulado',today:'Total hoje',week:'Total semana'};
-  document.getElementById('filter-lbl').textContent=lbl[curFilter];
-  document.getElementById('total-val').textContent=fmtShort(total||0);
-  const list=document.getElementById('session-list');
-  if(!filtered.length){list.innerHTML='<div class="empty-state">Nenhuma sessão registrada</div>';return;}
-  const byDate={};
-  filtered.forEach(s=>{byDate[s.date]=(byDate[s.date]||0)+s.ms;});
-  list.innerHTML=Object.entries(byDate).sort((a,b)=>b[0].localeCompare(a[0])).map(([date,ms])=>{
-    const d=new Date(date+'T12:00:00');
-    const label=d.toLocaleDateString('pt-BR',{weekday:'short',day:'2-digit',month:'2-digit'});
-    return `<div class="session-item"><span class="sdate">${label}</span><span class="sdur">${fmtShort(ms)}</span></div>`;
-  }).join('');
 }
 
 // ═══════════════════════════════════════════════════════
@@ -1433,6 +1318,108 @@ function xTDraw(){
 }
 document.addEventListener('visibilitychange',()=>{if(!document.hidden&&xTRun)xTTick();});
 // ═══════════════════════════════════════════════════════
+// FUTEBOL — presença e pagamento
+// ═══════════════════════════════════════════════════════
+let fxGames=ls.get('fx_games',{}); // {date:{price, pl:[{n,f:null|true|false,pay:''|'pix'|'cartao'|'dinheiro'}]}}
+let fxCur=null, fxFilt='todos', fxDelArm=false;
+const FX_PAY={pix:'Pix',cartao:'Cartão',dinheiro:'Dinheiro'};
+const fxSave=()=>ls.set('fx_games',fxGames);
+const fxEsc=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const fxMoney=v=>'R$ '+(Math.round(v*100)/100).toFixed(2).replace('.',',');
+function fxNextThu(){const d=new Date();d.setDate(d.getDate()+((4-d.getDay()+7)%7));return dKey(d);}
+function fxEnsure(){
+  const ks=Object.keys(fxGames).sort();
+  if(!ks.length){const k=fxNextThu();const prev=null;fxGames[k]={price:0,pl:[]};fxSave();}
+  if(!fxCur||!fxGames[fxCur]){
+    const ks2=Object.keys(fxGames).sort(),t=todayKey();
+    fxCur=ks2.find(k=>k>=t)||ks2[ks2.length-1];
+  }
+}
+function fxCleanName(l){
+  let s=l.replace(/^[\s\-–—•*·>]*\d{0,3}\s*[\-–—.)\]:º°]*\s*/,'');
+  s=s.replace(/[\u{1F000}-\u{1FAFF}\u{2600}-\u{27BF}\u{FE0F}\u{200D}\u{2705}\u{274C}\u{2714}\u{2716}]/gu,'');
+  s=s.replace(/\s*[-–—]?\s*\(?\b(pago|pg|ok|paguei|pix|vai|confirmado|goleiro)\b\)?\s*$/i,m=>/goleiro/i.test(m)?' (goleiro)':'');
+  return s.replace(/\s+/g,' ').trim();
+}
+function fxImport(){
+  const g=fxGames[fxCur];const lines=document.getElementById('fx-list').value.split(/\r?\n/);
+  let add=0,dup=0;
+  lines.forEach(l=>{
+    if(!/[A-Za-zÀ-ÿ]/.test(l))return;
+    const n=fxCleanName(l);if(n.length<2||n.length>40)return;
+    if(/^(lista|futebol|fut|jogo|quinta|valor|pix|chave|horário|horario|local|dia|data)\b/i.test(n)||/:\s*\S/.test(n))return;
+    if(g.pl.some(p=>p.n.toLowerCase()===n.toLowerCase())){dup++;return;}
+    g.pl.push({n,f:null,pay:''});add++;
+  });
+  fxSave();document.getElementById('fx-list').value='';
+  document.getElementById('fx-msg').textContent=add?`✅ ${add} nome(s) adicionados${dup?` · ${dup} já estavam`:''}.`:'Nenhum nome novo encontrado.';
+  fxRender();
+}
+function fxAddOne(){
+  const i=document.getElementById('fx-one');const n=fxCleanName(i.value);if(n.length<2)return;
+  const g=fxGames[fxCur];if(!g.pl.some(p=>p.n.toLowerCase()===n.toLowerCase()))g.pl.push({n,f:null,pay:''});
+  i.value='';fxSave();fxRender();
+}
+function fxNew(){
+  const d=document.getElementById('fx-newdate').value||fxNextThu();
+  if(!fxGames[d]){
+    const ks=Object.keys(fxGames).sort();const last=ks.length?fxGames[ks[ks.length-1]]:null;
+    fxGames[d]={price:last?last.price:0,pl:last?last.pl.map(p=>({n:p.n,f:null,pay:''})):[]};
+    fxSave();
+  }
+  fxCur=d;fxRender();
+}
+function fxPick(d){fxCur=d;fxDelArm=false;fxRender();}
+function fxSetPrice(v){const n=parseFloat(String(v).replace(',','.'));fxGames[fxCur].price=isNaN(n)?0:n;fxSave();fxRender();}
+function fxSetF(i,v){const p=fxGames[fxCur].pl[i];p.f=p.f===v?null:v;fxSave();fxRender();}
+function fxSetPay(i,v){const p=fxGames[fxCur].pl[i];p.pay=p.pay===v?'':v;if(p.pay&&p.f===null)p.f=true;fxSave();fxRender();}
+function fxDel(i){fxGames[fxCur].pl.splice(i,1);fxSave();fxRender();}
+function fxSetFilt(f){fxFilt=f;fxRender();}
+function fxDelGame(){
+  const b=document.getElementById('fx-del');
+  if(!fxDelArm){fxDelArm=true;b.textContent='Toque de novo para confirmar';b.style.color='var(--red)';return;}
+  delete fxGames[fxCur];fxSave();fxCur=null;fxDelArm=false;fxRender();
+}
+function fxCopyPend(){
+  const g=fxGames[fxCur];const pend=g.pl.filter(p=>p.f!==false&&!p.pay);
+  const txt=pend.length?`⚽ Futebol ${dFmt(fxCur,{day:'2-digit',month:'2-digit'})}${g.price?` · ${fxMoney(g.price)}`:''}\nFalta pagar:\n`+pend.map((p,i)=>`${i+1}. ${p.n}`).join('\n'):'Todo mundo pagou ✅';
+  const m=document.getElementById('fx-cmsg');
+  try{navigator.clipboard.writeText(txt).then(()=>m.textContent='✅ Copiado. Cole no grupo.',()=>m.textContent=txt);}catch(e){m.textContent=txt;}
+}
+function fxRender(){
+  fxEnsure();
+  const g=fxGames[fxCur];
+  document.getElementById('fx-sel').innerHTML=Object.keys(fxGames).sort().reverse().map(k=>`<option value="${k}"${k===fxCur?' selected':''}>${dFmt(k,{weekday:'short',day:'2-digit',month:'2-digit',year:'2-digit'})}</option>`).join('');
+  document.getElementById('fx-price').value=g.price?String(g.price).replace('.',','):'';
+  if(!document.getElementById('fx-newdate').value)document.getElementById('fx-newdate').value=fxNextThu();
+  const db=document.getElementById('fx-del');if(!fxDelArm){db.textContent='🗑 Apagar este jogo';db.style.color='';}
+  const tot=g.pl.length, foram=g.pl.filter(p=>p.f===true).length, falt=g.pl.filter(p=>p.f===false).length;
+  const pagos=g.pl.filter(p=>p.pay).length, pend=g.pl.filter(p=>p.f!==false&&!p.pay).length;
+  const by=k=>g.pl.filter(p=>p.pay===k).length;
+  document.getElementById('fx-stats').innerHTML=
+    `<div class="c_stat"><div class="c_num">${foram}<span style="font-size:1rem;color:var(--fg2)">/${tot}</span></div><div class="c_lbl">Foram</div></div>
+     <div class="c_stat"><div class="c_num">${pagos}</div><div class="c_lbl">Pagaram</div></div>
+     <div class="c_stat"><div class="c_num" style="color:${pend?'var(--red)':'var(--green)'}!important">${pend}</div><div class="c_lbl">Devendo</div></div>`+
+    (g.price?`<div class="c_stat" style="grid-column:1/-1;text-align:left;font-size:13px;color:var(--fg2)">Arrecadado: <strong style="color:var(--fg)">${fxMoney(pagos*g.price)}</strong> de ${fxMoney((tot-falt)*g.price)} · Pix ${by('pix')} · Cartão ${by('cartao')} · Dinheiro ${by('dinheiro')}${falt?` · ${falt} faltou`:''}</div>`:
+     `<div class="c_stat" style="grid-column:1/-1;text-align:left;font-size:13px;color:var(--fg2)">Pix ${by('pix')} · Cartão ${by('cartao')} · Dinheiro ${by('dinheiro')}${falt?` · ${falt} faltou`:''}</div>`);
+  const F={todos:'Todos',devendo:'Devendo',pagos:'Pagaram',faltou:'Faltaram'};
+  document.getElementById('fx-filter').innerHTML=Object.entries(F).map(([k,v])=>`<button class="ftab${fxFilt===k?' active':''}" onclick="fxSetFilt('${k}')">${v}</button>`).join('');
+  const show=p=>fxFilt==='todos'||(fxFilt==='devendo'&&p.f!==false&&!p.pay)||(fxFilt==='pagos'&&!!p.pay)||(fxFilt==='faltou'&&p.f===false);
+  const rows=g.pl.map((p,i)=>({p,i})).filter(x=>show(x.p));
+  document.getElementById('fx-players').innerHTML=!g.pl.length?'<div class="empty-state">Cole a lista do grupo acima.</div>':!rows.length?'<div class="empty-state">Ninguém nesse filtro.</div>':
+    rows.map(({p,i})=>`<div class="fx_p${p.pay?' paid':''}${p.f===false?' miss':''}">
+      <div class="fx_top"><span class="fx_n">${fxEsc(p.n)}</span>
+        <span class="fx_badge ${p.pay?'ok':p.f===false?'':'due'}">${p.pay?FX_PAY[p.pay]:p.f===false?'Faltou':'Devendo'}</span>
+        <button class="fx_x" onclick="fxDel(${i})" aria-label="remover ${fxEsc(p.n)}">✕</button></div>
+      <div class="fx_row">
+        <button class="fx_b${p.f===true?' on g':''}" onclick="fxSetF(${i},true)">✓ Foi</button>
+        <button class="fx_b${p.f===false?' on r':''}" onclick="fxSetF(${i},false)">✗ Faltou</button>
+        <span class="fx_sep"></span>
+        ${Object.entries(FX_PAY).map(([k,v])=>`<button class="fx_b${p.pay===k?' on a':''}" onclick="fxSetPay(${i},'${k}')">${v}</button>`).join('')}
+      </div></div>`).join('');
+}
+
+// ═══════════════════════════════════════════════════════
 // INIT
 // ═══════════════════════════════════════════════════════
 // ═══════════════════════════════════════════════════════
@@ -1464,7 +1451,7 @@ tRequestWakeLock();
 renderChecks();
 renderWater();
 renderCalCount();
-renderSessions();
+fxRender();
 xRenderWeek();
 cUpdateStats();
 cBuildCal();
@@ -1475,7 +1462,7 @@ cBuildTreino(cDiaAtivo);
 xRenderFol();
 
 // ── BACKUP ──
-const BK_KEYS=['gx_load','gx_logs','gx_body','gx_peso','hub_checks','hub_water','hub_calcount','hub_sessions','cf_checked','cf_days','cf_pull','cx_levels','cx_logs','cx_fol','cx_jogos','cx_body','cx_game'];
+const BK_KEYS=['fx_games','gx_load','gx_logs','gx_body','gx_peso','hub_checks','hub_water','hub_calcount','hub_sessions','cf_checked','cf_days','cf_pull','cx_levels','cx_logs','cx_fol','cx_jogos','cx_body','cx_game'];
 function bkCopy(){
   const o={};BK_KEYS.forEach(k=>{try{const v=localStorage.getItem(k);if(v!=null)o[k]=v;}catch(e){}});
   const txt=JSON.stringify({hub:1,d:o});
