@@ -355,6 +355,8 @@ nav::-webkit-scrollbar{display:none;}
 .fx_b.on.r{background:var(--red);border-color:var(--red);color:#fff;}
 .fx_b.on.a{background:var(--accent);border-color:var(--accent);color:#000;}
 .fx_sep{width:1px;height:22px;background:var(--border);margin:0 2px;}
+.ox_ta{width:100%;background:var(--bg3);color:var(--fg);border:1px solid var(--border);border-radius:8px;padding:10px;font-size:15px;font-family:inherit;line-height:1.5;margin-top:4px;resize:vertical;}
+.ox_ta:focus{outline:2px solid var(--accent);}
 .x_srows{display:flex;flex-direction:column;gap:6px;margin-top:8px;}
 .x_srow{display:flex;align-items:center;gap:6px;}
 .x_sn{font-size:12px;font-weight:700;color:var(--fg2);width:24px;}
@@ -380,6 +382,7 @@ nav::-webkit-scrollbar{display:none;}
 <!-- ══ TOP NAV ══ -->
 <nav>
   <button class="htab active" onclick="showHub('checklist',this)">☑️ Checklist</button>
+  <button class="htab" onclick="showHub('ox',this)">📖 Oxford</button>
   <button class="htab" onclick="showHub('fut',this)">⚽ Futebol</button>
   <button class="htab" onclick="showHub('cal',this)">💪 Academia</button>
 </nav>
@@ -399,8 +402,8 @@ nav::-webkit-scrollbar{display:none;}
     <div class="cbox" id="cb-biblia"></div><span class="clabel">10 capítulos da Bíblia</span>
   </div>
 
-  <div class="check-row" id="cr-redacao" onclick="toggleCheck('redacao')">
-    <div class="cbox" id="cb-redacao"></div><span class="clabel">3 redações</span>
+  <div class="check-row" id="cr-oxford" onclick="toggleCheck('oxford')">
+    <div class="cbox" id="cb-oxford"></div><span class="clabel" id="cl-oxford">Estudo Oxford</span>
   </div>
   <div class="check-row" id="cr-trava" onclick="toggleCheck('trava')">
     <div class="cbox" id="cb-trava"></div><span class="clabel">Trava-línguas</span>
@@ -493,6 +496,46 @@ nav::-webkit-scrollbar{display:none;}
     <div id="fx-cmsg" style="font-size:13px;margin-top:6px"></div>
   </div>
   <button class="ghost-btn" style="margin-top:4px" onclick="fxDelGame()" id="fx-del">🗑 Apagar este jogo</button>
+</div>
+
+<!-- ══════════════════ OXFORD ══════════════════ -->
+<div id="hpage-ox" class="hpage">
+  <h2 style="margin-bottom:4px">Estudo Oxford · Teologia</h2>
+  <p style="color:var(--fg2);font-size:13px;margin-bottom:12px">Uma pergunta por semana: ler, escrever, defender, reescrever.</p>
+
+  <div class="x_card">
+    <div class="x_lbl" id="ox-week-lbl">Semana</div>
+    <label class="x_field">Pergunta da semana
+      <textarea id="ox-q" rows="2" class="ox_ta" placeholder="Ex.: Por que Paulo diz que somos salvos pela fé, se Tiago diz que a fé sem obras é morta?" oninput="oxField('q',this.value)"></textarea>
+    </label>
+    <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:8px">
+      <button class="ghost-btn" onclick="oxSuggest()">💡 Sugerir pergunta</button>
+      <button class="ghost-btn" onclick="oxShift(-1)">‹ Semana anterior</button>
+      <button class="ghost-btn" onclick="oxShift(1)">Próxima ›</button>
+    </div>
+  </div>
+
+  <div class="x_lbl" style="margin-top:14px">Ciclo da semana</div>
+  <div id="ox-days"></div>
+
+  <div class="x_card" style="margin-top:12px">
+    <div class="x_lbl">Notas de leitura (Seg–Qua)</div>
+    <p style="font-size:12px;color:var(--fg2);margin-bottom:6px">Texto bíblico + 1 fonte de apoio + 1 visão que discorde. O que convence e o que não convence?</p>
+    <textarea id="ox-notes" rows="6" class="ox_ta" oninput="oxField('notes',this.value)"></textarea>
+  </div>
+
+  <div class="x_card">
+    <div class="x_lbl">Ensaio (Quinta) · <span id="ox-wc">0</span> palavras <span style="color:var(--fg2)">· meta 600–1.000</span></div>
+    <p style="font-size:12px;color:var(--fg2);margin-bottom:6px">Sua posição + argumentos + resposta à objeção mais forte. Não é resumo.</p>
+    <textarea id="ox-essay" rows="12" class="ox_ta" oninput="oxField('essay',this.value)"></textarea>
+    <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:8px">
+      <button class="accent-btn" onclick="oxCopy()">📤 Copiar para o tutorial (Claude)</button>
+    </div>
+    <div id="ox-msg" style="font-size:13px;margin-top:6px"></div>
+  </div>
+
+  <div class="x_lbl" style="margin-top:14px">Semanas anteriores</div>
+  <div id="ox-hist"></div>
 </div>
 
 <!-- ══════════════════ CALISTENIA ══════════════════ -->
@@ -705,7 +748,7 @@ document.getElementById('today-lbl').textContent =
 // ═══════════════════════════════════════════════════════
 // CHECKLIST
 // ═══════════════════════════════════════════════════════
-const CHECKS = ['oracao','biblia','redacao','trava'];
+const CHECKS = ['oracao','biblia','oxford','trava'];
 let checkData = ls.get('hub_checks',{});
 
 function getCheckToday(){ return checkData[todayKey()]||{}; }
@@ -718,10 +761,12 @@ function renderChecks(){
     document.getElementById('cr-'+k).classList.toggle('cdone',done);
     document.getElementById('cb-'+k).textContent=done?'✓':'';
   });
+  const ol=document.getElementById('cl-oxford');if(ol&&typeof oxTodayLabel==='function')ol.textContent=oxTodayLabel();
 }
 
 function toggleCheck(k){
   const t=getCheckToday(); t[k]=!t[k]; saveCheckToday(t); renderChecks();
+  if(k==='oxford'){const w=oxGet(oxSun(0));w.done[new Date().getDay()]=t[k];oxSave();oxRender();}
 }
 
 function resetDay(){
@@ -1458,6 +1503,56 @@ function fxRender(){
 }
 
 // ═══════════════════════════════════════════════════════
+// ESTUDO OXFORD — teologia, ciclo semanal
+// ═══════════════════════════════════════════════════════
+let oxW=ls.get('ox_weeks',{}); // {domingoKey:{q,notes,essay,done:{0..6}}}
+let oxOff=0;
+const OX_DAYS=[
+  {t:'Escolher a pergunta',d:'15 min. Tire da sua leitura da Bíblia.'},
+  {t:'Ler',d:'30–40 min. Texto bíblico + fonte de apoio.'},
+  {t:'Ler',d:'30–40 min. Visão que discorda.'},
+  {t:'Ler e organizar',d:'30 min. Defina sua posição nas notas.'},
+  {t:'Escrever o ensaio',d:'40 min. 600–1.000 palavras.'},
+  {t:'Tutorial',d:'Leia em voz alta, mande ao Claude e defenda.'},
+  {t:'Reescrever',d:'30 min. Corrija o que foi criticado.'},
+];
+const OX_SUG=['Por que Paulo diz que somos salvos pela fé, se Tiago diz que a fé sem obras é morta?','O que Jesus quis dizer com "Reino de Deus"?','Por que Jesus falava por parábolas?','O que significa "nascer de novo" em João 3?','Por que os evangelhos têm relatos diferentes do mesmo fato?','O que é a graça, e ela pode ser perdida?','Por que Jesus precisava morrer para salvar?','O que significa Jesus ser o "Filho do Homem"?','Qual o papel da Lei depois de Cristo?','Por que a igreja primitiva cresceu tão rápido sob perseguição?'];
+function oxSun(off){const d=new Date();d.setHours(12,0,0,0);d.setDate(d.getDate()-d.getDay()+7*(off||0));return dKey(d);}
+function oxGet(k){if(!oxW[k])oxW[k]={q:'',notes:'',essay:'',done:{}};return oxW[k];}
+const oxSave=()=>ls.set('ox_weeks',oxW);
+const oxWC=t=>(t.trim().match(/\S+/g)||[]).length;
+let oxT=null;
+function oxField(f,v){oxGet(oxSun(oxOff))[f]=v;if(f==='essay')document.getElementById('ox-wc').textContent=oxWC(v);clearTimeout(oxT);oxT=setTimeout(()=>{oxSave();oxRenderHist();},400);}
+function oxToggle(i){const w=oxGet(oxSun(oxOff));w.done[i]=!w.done[i];oxSave();
+  if(oxOff===0&&i===new Date().getDay()){const t=getCheckToday();t.oxford=!!w.done[i];saveCheckToday(t);renderChecks();}
+  oxRender();}
+function oxShift(d){oxOff=Math.min(0,oxOff+d);oxRender();}
+function oxSuggest(){const used=Object.values(oxW).map(w=>w.q);const pool=OX_SUG.filter(q=>!used.includes(q));const q=(pool.length?pool:OX_SUG)[Math.floor(Math.random()*(pool.length||OX_SUG.length))];
+  document.getElementById('ox-q').value=q;oxField('q',q);}
+function oxCopy(){
+  const w=oxGet(oxSun(oxOff));const m=document.getElementById('ox-msg');
+  if(oxWC(w.essay)<50){m.textContent='Escreva o ensaio primeiro.';return;}
+  const txt=`Tutorial estilo Oxford (teologia). Seja meu tutor: aponte as falhas do argumento, faça as objeções mais fortes e me faça defender a posição. Não reescreva por mim.\n\nPergunta: ${w.q}\n\nEnsaio:\n${w.essay}`;
+  try{navigator.clipboard.writeText(txt).then(()=>m.textContent='✅ Copiado. Cole numa conversa com o Claude.',()=>m.textContent='Não deu para copiar: selecione o texto do ensaio e copie manualmente.');}catch(e){m.textContent='Selecione o texto e copie manualmente.';}
+}
+function oxTodayLabel(){const i=new Date().getDay();return 'Estudo Oxford: '+OX_DAYS[i].t.toLowerCase();}
+function oxRenderHist(){
+  const ks=Object.keys(oxW).filter(k=>k<oxSun(0)&&oxW[k].q).sort().reverse();
+  document.getElementById('ox-hist').innerHTML=ks.length?ks.map(k=>{const w=oxW[k];const n=Object.values(w.done).filter(Boolean).length;
+    return `<div class="session-item"><span class="sdate" style="flex:1;min-width:0;padding-right:8px">${dFmt(k,{day:'2-digit',month:'2-digit'})} · ${fxEsc(w.q)}</span><span class="sdur">${n}/7 · ${oxWC(w.essay)}p</span></div>`;}).join(''):'<div class="empty-state" style="padding:14px 0">Seus ensaios das semanas passadas aparecem aqui.</div>';
+}
+function oxRender(){
+  const k=oxSun(oxOff), w=oxGet(k), td=new Date().getDay();
+  const end=dParse(k);end.setDate(end.getDate()+6);
+  document.getElementById('ox-week-lbl').textContent=`Semana ${dFmt(k,{day:'2-digit',month:'2-digit'})} – ${end.toLocaleDateString('pt-BR',{day:'2-digit',month:'2-digit'})}${oxOff===0?' · atual':''}`;
+  document.getElementById('ox-q').value=w.q;document.getElementById('ox-notes').value=w.notes;document.getElementById('ox-essay').value=w.essay;
+  document.getElementById('ox-wc').textContent=oxWC(w.essay);
+  document.getElementById('ox-days').innerHTML=OX_DAYS.map((d,i)=>`<div class="check-row${w.done[i]?' cdone':''}" onclick="oxToggle(${i})" style="${oxOff===0&&i===td?'border-color:var(--accent)':''}">
+    <div class="cbox">${w.done[i]?'✓':''}</div><div><div class="clabel">${C_DIAS_SEMANA[i]} · ${d.t}${oxOff===0&&i===td?' <span style="color:var(--acc-fg);font-size:12px">hoje</span>':''}</div><div style="font-size:12px;color:var(--fg2)">${d.d}</div></div></div>`).join('');
+  oxRenderHist();
+}
+
+// ═══════════════════════════════════════════════════════
 // INIT
 // ═══════════════════════════════════════════════════════
 // ═══════════════════════════════════════════════════════
@@ -1490,6 +1585,8 @@ renderChecks();
 renderWater();
 renderCalCount();
 fxRender();
+oxRender();
+renderChecks();
 xRenderWeek();
 cUpdateStats();
 cBuildCal();
@@ -1500,7 +1597,7 @@ cBuildTreino(cDiaAtivo);
 xRenderFol();
 
 // ── BACKUP ──
-const BK_KEYS=['fx_games','gx_load','gx_logs','gx_body','gx_peso','hub_checks','hub_water','hub_calcount','hub_sessions','cf_checked','cf_days','cf_pull','cx_levels','cx_logs','cx_fol','cx_jogos','cx_body','cx_game'];
+const BK_KEYS=['ox_weeks','fx_games','gx_load','gx_logs','gx_body','gx_peso','hub_checks','hub_water','hub_calcount','hub_sessions','cf_checked','cf_days','cf_pull','cx_levels','cx_logs','cx_fol','cx_jogos','cx_body','cx_game'];
 function bkCopy(){
   const o={};BK_KEYS.forEach(k=>{try{const v=localStorage.getItem(k);if(v!=null)o[k]=v;}catch(e){}});
   const txt=JSON.stringify({hub:1,d:o});
